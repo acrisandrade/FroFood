@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Apresentação", "0 - Apresentação", "{7F91FFA1-38A8-42C1-A2E3-43D12C74BC15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Aplicação", "1 - Aplicação", "{A9372B62-4A3E-4BDD-8686-6BEF7950204E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Dominio", "2 - Dominio", "{796DE1F0-65DA-475E-B880-A101BFEBBA9C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Serviço", "3 - Serviço", "{B69582E3-464A-4CF7-9FF9-D58F7BF82A08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infraestrutura", "4 - Infraestrutura", "{CB7ECAAE-8A1B-409A-A6B2-DB017F858740}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_FroFood", "API_FroFood\API_FroFood.csproj", "{A2B6FAD8-A680-4748-A25F-373916D5DB67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio_FroFood", "Dominio_FroFood\Dominio_FroFood.csproj", "{127B9596-1A9D-4B6E-AC23-ED2ED9D2AD45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2B6FAD8-A680-4748-A25F-373916D5DB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B6FAD8-A680-4748-A25F-373916D5DB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B6FAD8-A680-4748-A25F-373916D5DB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B6FAD8-A680-4748-A25F-373916D5DB67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{127B9596-1A9D-4B6E-AC23-ED2ED9D2AD45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127B9596-1A9D-4B6E-AC23-ED2ED9D2AD45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{127B9596-1A9D-4B6E-AC23-ED2ED9D2AD45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{127B9596-1A9D-4B6E-AC23-ED2ED9D2AD45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A2B6FAD8-A680-4748-A25F-373916D5DB67} = {A9372B62-4A3E-4BDD-8686-6BEF7950204E}
+		{127B9596-1A9D-4B6E-AC23-ED2ED9D2AD45} = {796DE1F0-65DA-475E-B880-A101BFEBBA9C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0DCF0C5-F68D-4FF0-93BE-628ADEF6F5FE}
+	EndGlobalSection
+EndGlobal
