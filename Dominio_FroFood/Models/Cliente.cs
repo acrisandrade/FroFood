@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Dominio_FroFood.Models
 {
-    class Cliente
+    public class Cliente : Usuario
     {
+        public IEnumerable<Endereco> Enderecos { get; set; }
+        public IEnumerable<Pedido> HistoricoPedidos { get; set; }
     }
 }

@@ -9,5 +9,9 @@ namespace Dominio_FroFood.Models
         public Guid Id { get; set; }
         public string Comentario { get; set; }
         public int Nota { get; set; }
+        public Guid ReatauranteID { get; set; }
+        public Guid ClienteId { get; set; }
+        //TODO
+        //Adicionar imagem
     }
 }
