@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Dominio_FroFood.Models
 {
-    public class Avaliacao
+    public class Avaliacao : ClasseBase
     {
-        public Guid Id { get; set; }
         public string Comentario { get; set; }
         public int Nota { get; set; }
         public Guid ReatauranteID { get; set; }

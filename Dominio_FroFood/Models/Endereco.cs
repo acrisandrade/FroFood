@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dominio_FroFood.Models
 {
-    public class Endereco
+    public class Endereco : ClasseBase
     {
         public string Rua { get; set; }
         public string Bairro { get; set; }

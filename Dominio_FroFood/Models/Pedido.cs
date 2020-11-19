@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Dominio_FroFood.Models
 {
-   public class Pedido
+   public class Pedido : ClasseBase
     {
-        public Guid Id { get; set; }
         public Decimal Valor { get; set; }
         public string Observacao { get; set; }
         public IEnumerable<Item> Itens { get; set; }

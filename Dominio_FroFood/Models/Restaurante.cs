@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dominio_FroFood.Models
 {
-    public class Restaurante
+    public class Restaurante : Usuario
     {
         public IEnumerable<Avaliacao> Avaliacoes { get; set;}
         public IEnumerable<Pedido> HistoricoPedidos { get; set; }
