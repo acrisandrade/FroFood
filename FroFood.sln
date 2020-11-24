@@ -17,15 +17,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio_FroFood", "Dominio_
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 - API_FroFoodClientes", "1.1 - API_FroFoodClientes", "{ED792377-3B94-4E0D-8FF9-E847A73FCAB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FroFoodCliente", "FroFoodCliente\FroFoodCliente.csproj", "{B88E1903-7AB2-4228-8752-C4BD5897165E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FroFoodCliente", "FroFoodCliente\FroFoodCliente.csproj", "{B88E1903-7AB2-4228-8752-C4BD5897165E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 - API_FroFoodRestaurantes", "1.2 - API_FroFoodRestaurantes", "{EE89CC4F-FA20-4020-841D-B6CD5944C57E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FroFoodRestaurante", "FroFoodRestaurante\FroFoodRestaurante.csproj", "{3A3CC1E1-BF82-48D6-9058-C2C6B8B46F1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FroFoodRestaurante", "FroFoodRestaurante\FroFoodRestaurante.csproj", "{3A3CC1E1-BF82-48D6-9058-C2C6B8B46F1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.1 - FroFoodClienteMVC", "0.1 - FroFoodClienteMVC", "{B852E803-011A-4BA7-BA3A-B838EFC9AE44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FroFoodClienteMVC", "FroFoodClienteMVC\FroFoodClienteMVC.csproj", "{0090FFD0-FADC-4C66-9AC3-4AC97BBED8ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FroFoodClienteMVC", "FroFoodClienteMVC\FroFoodClienteMVC.csproj", "{0090FFD0-FADC-4C66-9AC3-4AC97BBED8ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - BancoDeDados", "4.1 - BancoDeDados", "{768C194B-BFBE-4026-B495-C3CABAC0DDF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FroFoodDados", "FroFoodDados\FroFoodDados.csproj", "{F9150617-3F22-440B-9D07-37FEA6B2DACE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{0090FFD0-FADC-4C66-9AC3-4AC97BBED8ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0090FFD0-FADC-4C66-9AC3-4AC97BBED8ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0090FFD0-FADC-4C66-9AC3-4AC97BBED8ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9150617-3F22-440B-9D07-37FEA6B2DACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9150617-3F22-440B-9D07-37FEA6B2DACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9150617-3F22-440B-9D07-37FEA6B2DACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9150617-3F22-440B-9D07-37FEA6B2DACE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +69,8 @@ Global
 		{3A3CC1E1-BF82-48D6-9058-C2C6B8B46F1D} = {EE89CC4F-FA20-4020-841D-B6CD5944C57E}
 		{B852E803-011A-4BA7-BA3A-B838EFC9AE44} = {7F91FFA1-38A8-42C1-A2E3-43D12C74BC15}
 		{0090FFD0-FADC-4C66-9AC3-4AC97BBED8ED} = {B852E803-011A-4BA7-BA3A-B838EFC9AE44}
+		{768C194B-BFBE-4026-B495-C3CABAC0DDF8} = {CB7ECAAE-8A1B-409A-A6B2-DB017F858740}
+		{F9150617-3F22-440B-9D07-37FEA6B2DACE} = {768C194B-BFBE-4026-B495-C3CABAC0DDF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D0DCF0C5-F68D-4FF0-93BE-628ADEF6F5FE}
