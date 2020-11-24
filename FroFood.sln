@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FroFoodClienteMVC", "FroFoo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - BancoDeDados", "4.1 - BancoDeDados", "{768C194B-BFBE-4026-B495-C3CABAC0DDF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FroFoodDados", "FroFoodDados\FroFoodDados.csproj", "{F9150617-3F22-440B-9D07-37FEA6B2DACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FroFoodDados", "FroFoodDados\FroFoodDados.csproj", "{F9150617-3F22-440B-9D07-37FEA6B2DACE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -18,7 +18,7 @@ namespace FroFoodCliente.Controllers
             IEnumerable<RestauranteView> res = new List<RestauranteView>() {
                 new RestauranteView { Nome = "primeiro", Avaliacao = 4.5m },
                 new RestauranteView { Nome = "segundo", Avaliacao = 1.5m },
-                new RestauranteView { Nome = " terceiro", Avaliacao = 2.5m },
+                new RestauranteView { Nome = "terceiro", Avaliacao = 2.5m },
                 new RestauranteView { Nome = "quarto", Avaliacao = 3.5m },
                 new RestauranteView { Nome = "quinto", Avaliacao = 2.5m },
                 new RestauranteView { Nome = "sexto", Avaliacao = 4.5m },
