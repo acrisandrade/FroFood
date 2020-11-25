@@ -46,6 +46,6 @@ namespace FroFoodCliente.Controllers
 
             return maioresAvaliacoes;
         }
-        
+       
     }
 }

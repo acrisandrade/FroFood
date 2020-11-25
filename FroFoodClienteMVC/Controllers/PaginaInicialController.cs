@@ -34,5 +34,19 @@ namespace FroFoodClienteMVC.Controllers
             }
             return View(listaDeMelhoresRestaurantes);
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult ResultadoBusca()
+        {
+            return View();
+        }
+
+        public IActionResult InfoRestaurante()
+        {
+            return View();
+        }
     }
 }
