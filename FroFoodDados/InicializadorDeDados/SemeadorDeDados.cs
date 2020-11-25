@@ -118,7 +118,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Nome = "Churrasquinho de Gato",
                         Email = "gatos@noespeto.com",
                         Telefone = "94231676",
-                        Descricao = "Você morde o gato mia.",
+                        Descricao = "Você sente o miado.",
                         Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                     new Restaurante()
@@ -147,12 +147,322 @@ namespace FroFoodDados.InicializadorDeDados
                     new Item()
                     {
                         Id = Guid.NewGuid(),
-                        Nome = "Paçoca",
-                        Tamanho = 22,
-                        Descricao = "22cm de puro prazer",
+                        Nome = "Misto Mega",
+                        //Tamanho = 0,
+                        Descricao = "Com tudo que não presta",
+                        Valor = 10.50m,
+                        Categoria = "Lanche",
+                        RestauranteId = restaurantes[0].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Pai dos podrões",
+                        //Tamanho = 22,
+                        Descricao = "Com tudo que não presta",
+                        Valor = 17.50m,
+                        Categoria = "Lanche",
+                        RestauranteId = restaurantes[0].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Lagostim",
+                        //Tamanho = 22,
+                        Descricao = "Lagostim delicioso",
+                        Valor = 11.50m,
+                        Categoria = "Frutos do Mar",
+                        RestauranteId = restaurantes[1].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Lagosta",
+                        //Tamanho = 22,
+                        Descricao = "Leve seu babador",
+                        Valor = 92m,
+                        Categoria = "Frutos do Mar",
+                        RestauranteId = restaurantes[1].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Camarão",
+                        //Tamanho = 22,
+                        Descricao = "É maior, é melhor, senhoras e senhoras é demais!",
+                        Valor = 55.50m,
+                        Categoria = "Frutos do Mar",
+                        RestauranteId = restaurantes[1].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Mega power pizza",
+                        Tamanho = 50,
+                        Descricao = "50cm de tudo que vc quiser",
+                        Valor = 62.50m,
+                        Categoria = "Pizza",
+                        RestauranteId = restaurantes[2].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Pizza Muçarela",
+                        Tamanho = 30,
+                        Descricao = "Pizza de muçarela",
+                        Valor = 2.50m,
+                        Categoria = "Pizza",
+                        RestauranteId = restaurantes[2].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Pizza Calabresa",
+                        Tamanho = 45,
+                        Descricao = "Pizza de Calabresa",
+                        Valor = 2.50m,
+                        Categoria = "Pizza",
+                        RestauranteId = restaurantes[2].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Roupa Velha",
+                        //Tamanho = 22,
+                        Descricao = "O prato, feito com charque (uma carne salgada e defumada típica da região sul)",
+                        Valor = 32.50m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[3].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Mão de Vaca",
+                        //Tamanho = 22,
+                        Descricao = "O guisado, com a perna traseira do boi, é nutritivo e revigorante.",
+                        Valor = 25.50m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[3].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Amor-Perfeito",
+                        //Tamanho = 22,
+                        Descricao = "Também conhecido como Sequilho de Tocantins",
+                        Valor = 40m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[3].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Gelado",
+                        //Tamanho = 22,
+                        Descricao = "Fica frio aí!",
+                        Valor = 12.50m,
+                        Categoria = "Sobremesa",
+                        RestauranteId = restaurantes[4].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Capitão Frio",
+                        //Tamanho = 22,
+                        Descricao = "Faça o plano, excute o plano. Espere que o plano dê errado, jogue o plano fora.",
+                        Valor = 5.50m,
+                        Categoria = "Sobremesa",
+                        RestauranteId = restaurantes[4].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Vanilla Ice",
+                        //Tamanho = 22,
+                        Descricao = "Ice Ice Baby",
+                        Valor = 17m,
+                        Categoria = "Sobremesa",
+                        RestauranteId = restaurantes[4].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Hamburguer Gurmet",
+                        //Tamanho = 22,
+                        Descricao = "Promete muito, mas nada demais.",
+                        Valor = 54m,
+                        Categoria = "Lanche",
+                        RestauranteId = restaurantes[5].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Podrão",
+                        //Tamanho = 22,
+                        Descricao = "Não da para saber o que tem dentro e é sempre o mais saboroso",
+                        Valor = 15.50m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[5].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Hamburguer da Aparencia",
+                        //Tamanho = 22,
+                        Descricao = "Aquele hamburguer que só existe na foto.",
                         Valor = 2.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[0].Id,
+                        RestauranteId = restaurantes[5].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Bolinho de chuva",
+                        //Tamanho = 22,
+                        Descricao = "Chova chuva, chove sem parar.",
+                        Valor = 8.50m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[6].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Suco da Cuca",
+                        //Tamanho = 22,
+                        Descricao = "Suco da Cuca",
+                        Valor = 6.50m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[6].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Bolo de Visconde",
+                        //Tamanho = 22,
+                        Descricao = "Virou bolo",
+                        Valor = 12.50m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[6].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Suco Vermelho",
+                        //Tamanho = 22,
+                        Descricao = "Dentes fortes, hein garoto!",
+                        Valor = 72.50m,
+                        Categoria = "Bebida",
+                        RestauranteId = restaurantes[7].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Desmiolado",
+                        //Tamanho = 22,
+                        Descricao = "Seu zumbi merece o melhor!",
+                        Valor = 32.50m,
+                        Categoria = "Lanche",
+                        RestauranteId = restaurantes[7].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Delirio da Succubus",
+                        //Tamanho = 22,
+                        Descricao = "Tudo que você mais deseja.",
+                        Valor = 63m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[7].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Koshary",
+                        //Tamanho = 22,
+                        Descricao = "Os faraó pira!",
+                        Valor = 27.50m,
+                        Categoria = "Petisco",
+                        RestauranteId = restaurantes[8].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Molokheya",
+                        //Tamanho = 22,
+                        Descricao = "Um enigma a ser desvendado!",
+                        Valor = 10m,
+                        Categoria = "Petisco",
+                        RestauranteId = restaurantes[8].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Kunafa",
+                        //Tamanho = 22,
+                        Descricao = "De levar para o sarcófago",
+                        Valor = 29.90m,
+                        Categoria = "Petisco",
+                        RestauranteId = restaurantes[8].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Pão de trigo com cevada",
+                        //Tamanho = 22,
+                        Descricao = "Delicioso pão de trigo",
+                        Valor = 1.90m,
+                        Categoria = "Salgado",
+                        RestauranteId = restaurantes[9].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Bolinho de Carne de Cordeiro",
+                        //Tamanho = 22,
+                        Descricao = "Você vai agradecer pelo sacrifio do cordeiro",
+                        Valor = 3.90m,
+                        Categoria = "Salgado",
+                        RestauranteId = restaurantes[9].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Bolinho de faisão",
+                        //Tamanho = 22,
+                        Descricao = "Não temos pombo",
+                        Valor = 2.10m,
+                        Categoria = "Salgado",
+                        RestauranteId = restaurantes[9].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Paçoca",
+                        //Tamanho = 22,
+                        Descricao = "22cm de puro prazer",
+                        Valor = 2.50m,
+                        Categoria = "Petisco",
+                        RestauranteId = restaurantes[10].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Paçoca",
+                        //Tamanho = 22,
+                        Descricao = "22cm de puro prazer",
+                        Valor = 2.50m,
+                        Categoria = "Petisco",
+                        RestauranteId = restaurantes[10].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Paçoca",
+                        //Tamanho = 22,
+                        Descricao = "22cm de puro prazer",
+                        Valor = 2.50m,
+                        Categoria = "Petisco",
+                        RestauranteId = restaurantes[10].Id,
                     },
                     new Item()
                     {
@@ -162,17 +472,33 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "22cm de puro prazer",
                         Valor = 2.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[0].Id,
+                        RestauranteId = restaurantes[11].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Paçoca",
+                        Tamanho = 22,
+                        Descricao = "22cm de puro prazer",
+                        Valor = 2.50m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[11].Id,
+                    },
+                    new Item()
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = "Paçoca",
+                        Tamanho = 22,
+                        Descricao = "22cm de puro prazer",
+                        Valor = 2.50m,
+                        Categoria = "Doce",
+                        RestauranteId = restaurantes[11].Id,
                     },
                 };
 
-                await contexto.Restaurante.AddRangeAsync(restaurantes); 
+                contexto.Restaurante.AddRange(restaurantes);
+                contexto.Item.AddRange(items);
             }
-        }
-
-        private static Guid GerarGuid()
-        {
-            return Guid.NewGuid();
         }
     }
 }
