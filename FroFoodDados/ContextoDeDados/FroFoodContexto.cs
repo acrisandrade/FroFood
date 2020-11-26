@@ -15,10 +15,11 @@ namespace FroFoodDados.ContextoDeDados
         public DbSet<Restaurante> Restaurante { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
-        public FroFoodContexto(DbContextOptions<FroFoodContexto> options) : base (options)
+        public FroFoodContexto(DbContextOptions<FroFoodContexto> options) : base(options)
         {
 
         }
+        public DbSet<Dominio_FroFood.ViewModels.ClienteView> Cliente { get; set; }
 
     }
 }

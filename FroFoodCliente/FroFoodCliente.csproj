@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Dominio_FroFood\Dominio_FroFood.csproj" />
+    <ProjectReference Include="..\FroFoodDados\FroFoodDados.csproj" />
   </ItemGroup>
 
 
