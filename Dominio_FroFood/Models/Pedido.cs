@@ -9,8 +9,9 @@ namespace Dominio_FroFood.Models
         public Decimal Valor { get; set; }
         public string Observacao { get; set; }
         public IEnumerable<Item> Itens { get; set; }
-        public Guid RestauranteId { get; set; }
-        public Guid ClienteId { get; set; }
+        public Restaurante Restaurante { get; set; }
+        public Cliente Cliente { get; set; }
+        public FormaPagamento Pagamento { get; set; }
         public string Status { get; set; }
     }
 }

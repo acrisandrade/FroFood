@@ -6,8 +6,8 @@ namespace Dominio_FroFood.Models
 {
     public enum FormaPagamento
     {
-        Dinheiro = 1,
-        Cartao = 2,
-        PicPay = 3,
+        Dinheiro,
+        Cartao,
+        PicPay,
     }
 }

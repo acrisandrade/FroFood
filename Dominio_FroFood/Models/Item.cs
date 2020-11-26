@@ -11,7 +11,7 @@ namespace Dominio_FroFood.Models
         public Decimal Valor { get; set; }
         public int Tamanho { get; set; }
         public string Categoria { get; set; }
-        public Guid RestauranteId { get; set; }
+        public Restaurante Restaurante { get; set; }
 
         //TODO
         //Adicionar Imagem

@@ -29,7 +29,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "superpodrao@super.super.com",
                         Telefone = "991234568",
                         Descricao = "Um podrão que é super podre!",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                     new Restaurante()
                     {
@@ -38,7 +38,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "llgostins@lagostims.com",
                         Telefone = "9987654321",
                         Descricao = "Os melhores Lagostims!",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro, FormaPagamento.PicPay },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro, FormaPagamento.PicPay },
                     },
                     new Restaurante()
                     {
@@ -47,7 +47,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "ppizza@ppizza.com",
                         Telefone = "976543218",
                         Descricao = "Nome de Pizzaria de Itaguai.",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro, FormaPagamento.Cartao },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro, FormaPagamento.Cartao },
                     },
                     new Restaurante()
                     {
@@ -56,7 +56,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "booklanches@blch.com",
                         Telefone = "913456782",
                         Descricao = "Lanches para quem tem pensamentos livres.",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Cartao },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Cartao },
                     },
                     new Restaurante()
                     {
@@ -65,7 +65,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "javateria@javateria.com",
                         Telefone = "991345682",
                         Descricao = "Melhores sorvetes da primavera, e os melhores cafés.",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.PicPay },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.PicPay },
                     },
                     new Restaurante()
                     {
@@ -74,7 +74,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "burgaoburguer@burgaoburguer.com",
                         Telefone = "997182935",
                         Descricao = "Um hamburguer burgado para desbugar sua fome!",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                     new Restaurante()
                     {
@@ -83,7 +83,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "srbenta@srbenta.com",
                         Telefone = "998934558",
                         Descricao = "As melhores receitas do sítio do pica-pau amarelo.",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                     new Restaurante()
                     {
@@ -92,7 +92,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "alucard@belmont.com",
                         Telefone = "98544568",
                         Descricao = "Tudo de melhor para sua presas.",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                     new Restaurante()
                     {
@@ -101,7 +101,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "enigma@milenio.com",
                         Telefone = "98537568",
                         Descricao = "Os melhores petiscos do milenio.",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                     new Restaurante()
                     {
@@ -110,7 +110,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "mar@vermelho.com",
                         Telefone = "98596748",
                         Descricao = "Tudo feito com sal marinho.",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                     new Restaurante()
                     {
@@ -119,7 +119,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "gatos@noespeto.com",
                         Telefone = "94231676",
                         Descricao = "Você sente o miado.",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                     new Restaurante()
                     {
@@ -128,7 +128,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Email = "bolos@senhora.com",
                         Telefone = "99934568",
                         Descricao = "Os melhores bolos para sua festa",
-                        Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
+                        //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro },
                     },
                 };
 
@@ -142,7 +142,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "18cm de puro prazer",
                         Valor = 25m,
                         Categoria = "Lanche",
-                        RestauranteId = restaurantes[0].Id,
+                        Restaurante = restaurantes[0],
                     },
                     new Item()
                     {
@@ -152,7 +152,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Com tudo que não presta",
                         Valor = 10.50m,
                         Categoria = "Lanche",
-                        RestauranteId = restaurantes[0].Id,
+                        Restaurante = restaurantes[0],
                     },
                     new Item()
                     {
@@ -162,7 +162,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Com tudo que não presta",
                         Valor = 17.50m,
                         Categoria = "Lanche",
-                        RestauranteId = restaurantes[0].Id,
+                        Restaurante = restaurantes[0],
                     },
                     new Item()
                     {
@@ -172,7 +172,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Lagostim delicioso",
                         Valor = 11.50m,
                         Categoria = "Frutos do Mar",
-                        RestauranteId = restaurantes[1].Id,
+                        Restaurante = restaurantes[1],
                     },
                     new Item()
                     {
@@ -182,7 +182,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Leve seu babador",
                         Valor = 92m,
                         Categoria = "Frutos do Mar",
-                        RestauranteId = restaurantes[1].Id,
+                        Restaurante = restaurantes[1],
                     },
                     new Item()
                     {
@@ -192,7 +192,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "É maior, é melhor, senhoras e senhoras é demais!",
                         Valor = 55.50m,
                         Categoria = "Frutos do Mar",
-                        RestauranteId = restaurantes[1].Id,
+                        Restaurante = restaurantes[1],
                     },
                     new Item()
                     {
@@ -202,7 +202,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "50cm de tudo que vc quiser",
                         Valor = 62.50m,
                         Categoria = "Pizza",
-                        RestauranteId = restaurantes[2].Id,
+                        Restaurante = restaurantes[2],
                     },
                     new Item()
                     {
@@ -212,7 +212,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Pizza de muçarela",
                         Valor = 2.50m,
                         Categoria = "Pizza",
-                        RestauranteId = restaurantes[2].Id,
+                        Restaurante = restaurantes[2],
                     },
                     new Item()
                     {
@@ -222,7 +222,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Pizza de Calabresa",
                         Valor = 2.50m,
                         Categoria = "Pizza",
-                        RestauranteId = restaurantes[2].Id,
+                        Restaurante = restaurantes[2],
                     },
                     new Item()
                     {
@@ -232,7 +232,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "O prato, feito com charque (uma carne salgada e defumada típica da região sul)",
                         Valor = 32.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[3].Id,
+                        Restaurante = restaurantes[3],
                     },
                     new Item()
                     {
@@ -242,7 +242,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "O guisado, com a perna traseira do boi, é nutritivo e revigorante.",
                         Valor = 25.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[3].Id,
+                        Restaurante = restaurantes[3],
                     },
                     new Item()
                     {
@@ -252,7 +252,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Também conhecido como Sequilho de Tocantins",
                         Valor = 40m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[3].Id,
+                        Restaurante = restaurantes[3],
                     },
                     new Item()
                     {
@@ -262,7 +262,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Fica frio aí!",
                         Valor = 12.50m,
                         Categoria = "Sobremesa",
-                        RestauranteId = restaurantes[4].Id,
+                        Restaurante = restaurantes[4],
                     },
                     new Item()
                     {
@@ -272,7 +272,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Faça o plano, excute o plano. Espere que o plano dê errado, jogue o plano fora.",
                         Valor = 5.50m,
                         Categoria = "Sobremesa",
-                        RestauranteId = restaurantes[4].Id,
+                        Restaurante = restaurantes[4],
                     },
                     new Item()
                     {
@@ -282,7 +282,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Ice Ice Baby",
                         Valor = 17m,
                         Categoria = "Sobremesa",
-                        RestauranteId = restaurantes[4].Id,
+                        Restaurante = restaurantes[4],
                     },
                     new Item()
                     {
@@ -292,7 +292,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Promete muito, mas nada demais.",
                         Valor = 54m,
                         Categoria = "Lanche",
-                        RestauranteId = restaurantes[5].Id,
+                        Restaurante = restaurantes[5],
                     },
                     new Item()
                     {
@@ -302,7 +302,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Não da para saber o que tem dentro e é sempre o mais saboroso",
                         Valor = 15.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[5].Id,
+                        Restaurante = restaurantes[5],
                     },
                     new Item()
                     {
@@ -312,7 +312,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Aquele hamburguer que só existe na foto.",
                         Valor = 2.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[5].Id,
+                        Restaurante = restaurantes[5],
                     },
                     new Item()
                     {
@@ -322,7 +322,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Chova chuva, chove sem parar.",
                         Valor = 8.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[6].Id,
+                        Restaurante = restaurantes[6],
                     },
                     new Item()
                     {
@@ -332,7 +332,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Suco da Cuca",
                         Valor = 6.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[6].Id,
+                        Restaurante = restaurantes[6],
                     },
                     new Item()
                     {
@@ -342,7 +342,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Virou bolo",
                         Valor = 12.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[6].Id,
+                        Restaurante = restaurantes[6],
                     },
                     new Item()
                     {
@@ -352,7 +352,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Dentes fortes, hein garoto!",
                         Valor = 72.50m,
                         Categoria = "Bebida",
-                        RestauranteId = restaurantes[7].Id,
+                        Restaurante = restaurantes[7],
                     },
                     new Item()
                     {
@@ -362,7 +362,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Seu zumbi merece o melhor!",
                         Valor = 32.50m,
                         Categoria = "Lanche",
-                        RestauranteId = restaurantes[7].Id,
+                        Restaurante = restaurantes[7],
                     },
                     new Item()
                     {
@@ -372,7 +372,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Tudo que você mais deseja.",
                         Valor = 63m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[7].Id,
+                        Restaurante = restaurantes[7],
                     },
                     new Item()
                     {
@@ -382,7 +382,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Os faraó pira!",
                         Valor = 27.50m,
                         Categoria = "Petisco",
-                        RestauranteId = restaurantes[8].Id,
+                        Restaurante = restaurantes[8],
                     },
                     new Item()
                     {
@@ -392,7 +392,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Um enigma a ser desvendado!",
                         Valor = 10m,
                         Categoria = "Petisco",
-                        RestauranteId = restaurantes[8].Id,
+                        Restaurante = restaurantes[8],
                     },
                     new Item()
                     {
@@ -402,7 +402,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "De levar para o sarcófago",
                         Valor = 29.90m,
                         Categoria = "Petisco",
-                        RestauranteId = restaurantes[8].Id,
+                        Restaurante = restaurantes[8],
                     },
                     new Item()
                     {
@@ -412,7 +412,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Delicioso pão de trigo",
                         Valor = 1.90m,
                         Categoria = "Salgado",
-                        RestauranteId = restaurantes[9].Id,
+                        Restaurante = restaurantes[9],
                     },
                     new Item()
                     {
@@ -422,7 +422,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Você vai agradecer pelo sacrifio do cordeiro",
                         Valor = 3.90m,
                         Categoria = "Salgado",
-                        RestauranteId = restaurantes[9].Id,
+                        Restaurante = restaurantes[9],
                     },
                     new Item()
                     {
@@ -432,7 +432,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "Não temos pombo",
                         Valor = 2.10m,
                         Categoria = "Salgado",
-                        RestauranteId = restaurantes[9].Id,
+                        Restaurante = restaurantes[9],
                     },
                     new Item()
                     {
@@ -442,7 +442,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "22cm de puro prazer",
                         Valor = 2.50m,
                         Categoria = "Petisco",
-                        RestauranteId = restaurantes[10].Id,
+                        Restaurante = restaurantes[10],
                     },
                     new Item()
                     {
@@ -452,7 +452,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "22cm de puro prazer",
                         Valor = 2.50m,
                         Categoria = "Petisco",
-                        RestauranteId = restaurantes[10].Id,
+                        Restaurante = restaurantes[10],
                     },
                     new Item()
                     {
@@ -462,7 +462,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "22cm de puro prazer",
                         Valor = 2.50m,
                         Categoria = "Petisco",
-                        RestauranteId = restaurantes[10].Id,
+                        Restaurante = restaurantes[10],
                     },
                     new Item()
                     {
@@ -472,7 +472,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "22cm de puro prazer",
                         Valor = 2.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[11].Id,
+                        Restaurante = restaurantes[11],
                     },
                     new Item()
                     {
@@ -482,7 +482,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "22cm de puro prazer",
                         Valor = 2.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[11].Id,
+                        Restaurante = restaurantes[11],
                     },
                     new Item()
                     {
@@ -492,7 +492,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Descricao = "22cm de puro prazer",
                         Valor = 2.50m,
                         Categoria = "Doce",
-                        RestauranteId = restaurantes[11].Id,
+                        Restaurante = restaurantes[11],
                     },
                 };
 
