@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dominio_FroFood.Models
+﻿namespace Dominio_FroFood.Models
 {
     public enum FormaPagamento
     {

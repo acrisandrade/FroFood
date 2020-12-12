@@ -1,15 +1,12 @@
 ﻿using Dominio_FroFood.Models;
 using FroFoodDados.Repositorios;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FroFoodService.Services
 {
-    public class ServicoBase<T, TRepository> 
-                            where T : ClasseBase
+    public class ServicoBase<T, TRepository> : IServicoBase<T> where T : ClasseBase
                             where TRepository : RepositorioBase<T>
     {
         protected readonly TRepository _repositorio;

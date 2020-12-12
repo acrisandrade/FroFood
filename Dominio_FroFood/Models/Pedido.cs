@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Dominio_FroFood.Models
 {
-   public class Pedido : ClasseBase
+    public class Pedido : ClasseBase
     {
         public Decimal Valor { get; set; }
         public string Observacao { get; set; }

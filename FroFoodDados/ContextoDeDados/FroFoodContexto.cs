@@ -1,9 +1,6 @@
 ﻿using Dominio_FroFood.Models;
 using FroFoodDados.MapeamentoDeModelos;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FroFoodDados.ContextoDeDados
 {
