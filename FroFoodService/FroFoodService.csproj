@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="HttpClientes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio_FroFood\Dominio_FroFood.csproj" />
+    <ProjectReference Include="..\FroFoodDados\FroFoodDados.csproj" />
+  </ItemGroup>
+
 </Project>
