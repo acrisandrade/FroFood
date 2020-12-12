@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +12,11 @@ namespace FroFoodDados.InicializadorDeDados
 {
     public class SemeadorDeDados
     {
-        public static async Task Inicializar(IServiceProvider provedorServico)
+        public static void Inicializar(IServiceProvider provedorServico)
         {
             using (var contexto = new FroFoodContexto(provedorServico.GetRequiredService<DbContextOptions<FroFoodContexto>>()))
             {
-                if (await contexto.Restaurante.AnyAsync())
+                if (contexto.Restaurante.Any())
                 {
                     return;
                 }
@@ -36,7 +37,7 @@ namespace FroFoodDados.InicializadorDeDados
                         Id = Guid.NewGuid(),
                         Nome = "Los Lagostims",
                         Email = "llgostins@lagostims.com",
-                        Telefone = "9987654321",
+                        Telefone = "998765432",
                         Descricao = "Os melhores Lagostims!",
                         //Pagamento = new List<FormaPagamento> { FormaPagamento.Dinheiro, FormaPagamento.PicPay },
                     },
@@ -437,60 +438,60 @@ namespace FroFoodDados.InicializadorDeDados
                     new Item()
                     {
                         Id = Guid.NewGuid(),
-                        Nome = "Paçoca",
+                        Nome = "Picanha na Brasa",
                         //Tamanho = 22,
-                        Descricao = "22cm de puro prazer",
-                        Valor = 2.50m,
+                        Descricao = "Deliciosa picanha de gato, você nem percebe a diferença",
+                        Valor = 27.50m,
                         Categoria = "Petisco",
                         Restaurante = restaurantes[10],
                     },
                     new Item()
                     {
                         Id = Guid.NewGuid(),
-                        Nome = "Paçoca",
+                        Nome = "Linguiça na farofa",
                         //Tamanho = 22,
-                        Descricao = "22cm de puro prazer",
-                        Valor = 2.50m,
+                        Descricao = "A melhor liguiça com a melhor farofa",
+                        Valor = 12.50m,
                         Categoria = "Petisco",
                         Restaurante = restaurantes[10],
                     },
                     new Item()
                     {
                         Id = Guid.NewGuid(),
-                        Nome = "Paçoca",
+                        Nome = "Coração no espeto",
                         //Tamanho = 22,
-                        Descricao = "22cm de puro prazer",
-                        Valor = 2.50m,
+                        Descricao = "Coração espetado",
+                        Valor = 3.50m,
                         Categoria = "Petisco",
                         Restaurante = restaurantes[10],
                     },
                     new Item()
                     {
                         Id = Guid.NewGuid(),
-                        Nome = "Paçoca",
-                        Tamanho = 22,
-                        Descricao = "22cm de puro prazer",
-                        Valor = 2.50m,
+                        Nome = "Bolo de Cenoura",
+                        //Tamanho = 22,
+                        Descricao = "Bolo de chocolate com cobertura de cenoura.",
+                        Valor = 15m,
                         Categoria = "Doce",
                         Restaurante = restaurantes[11],
                     },
                     new Item()
                     {
                         Id = Guid.NewGuid(),
-                        Nome = "Paçoca",
-                        Tamanho = 22,
-                        Descricao = "22cm de puro prazer",
-                        Valor = 2.50m,
+                        Nome = "Bolo de Mandioca",
+                        //Tamanho = 22,
+                        Descricao = "Bolo de mandioca sem aipim",
+                        Valor = 22m,
                         Categoria = "Doce",
                         Restaurante = restaurantes[11],
                     },
                     new Item()
                     {
                         Id = Guid.NewGuid(),
-                        Nome = "Paçoca",
-                        Tamanho = 22,
-                        Descricao = "22cm de puro prazer",
-                        Valor = 2.50m,
+                        Nome = "Bolo de Fubá",
+                        //Tamanho = 22,
+                        Descricao = "Bolo de bolo",
+                        Valor = 23.90m,
                         Categoria = "Doce",
                         Restaurante = restaurantes[11],
                     },
@@ -498,6 +499,7 @@ namespace FroFoodDados.InicializadorDeDados
 
                 contexto.Restaurante.AddRange(restaurantes);
                 contexto.Item.AddRange(items);
+                contexto.SaveChanges();
             }
         }
     }

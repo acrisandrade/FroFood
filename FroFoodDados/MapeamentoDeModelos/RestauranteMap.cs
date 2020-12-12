@@ -17,10 +17,9 @@ namespace FroFoodDados.MapeamentoDeModelos
             builder.HasKey(e => e.Id);
             builder.HasIndex(r => r.Email).IsUnique();
             builder.Property(r => r.Descricao).HasMaxLength(250);
-            builder.HasOne(r => r.Local);
+            builder.HasOne(r => r.Endereco);
             builder.HasMany(r => r.Cardapio);
-            builder.Property(r => r.Pagamento)
-                   .HasConversion(converter);
+            builder.Property(r => r.Pagamento).HasConversion(converter);
         }
     }
 }

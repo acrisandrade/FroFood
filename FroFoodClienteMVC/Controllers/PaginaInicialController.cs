@@ -54,7 +54,7 @@ namespace FroFoodClienteMVC.Controllers
                 return View(listaBusca);
         }*/
 
-        public async Task<IActionResult> InfoRestaurante(int id)
+        public async Task<IActionResult> InfoRestaurante(Guid id)
         {
             List <RestauranteView> restaurante = new List <RestauranteView>();
             using (var httpClient = new HttpClient()) {
@@ -65,7 +65,7 @@ namespace FroFoodClienteMVC.Controllers
                     restaurante = JsonConvert.DeserializeObject<List<RestauranteView >>(apiResposta);
                 }
 
-                    return View(restaurante);
+                return View(restaurante);
             }
         }
     }

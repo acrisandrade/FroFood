@@ -12,6 +12,7 @@ namespace Dominio_FroFood.Models
         public int Tamanho { get; set; }
         public string Categoria { get; set; }
         public Restaurante Restaurante { get; set; }
+        public IEnumerable<ItemPedido> Pedidos { get; set; }
 
         //TODO
         //Adicionar Imagem

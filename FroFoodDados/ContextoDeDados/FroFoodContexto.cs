@@ -15,12 +15,12 @@ namespace FroFoodDados.ContextoDeDados
         public DbSet<Pedido> Pedido { get; set; }
         public DbSet<Restaurante> Restaurante { get; set; }
         public DbSet<Cliente> Usuario { get; set; }
+        public DbSet<ItemPedido> ItemPedido { get; set; }
 
         public FroFoodContexto(DbContextOptions<FroFoodContexto> options) : base(options)
         {
 
         }
-        public DbSet<Dominio_FroFood.ViewModels.ClienteView> Cliente { get; set; }
 
         protected override void OnModelCreating (ModelBuilder builder)
         {
@@ -31,6 +31,7 @@ namespace FroFoodDados.ContextoDeDados
             builder.Entity<Item>(new ItemMap().Configure);
             builder.Entity<Pedido>(new PedidoMap().Configure);
             builder.Entity<Restaurante>(new RestauranteMap().Configure);
+            builder.Entity<ItemPedido>(new ItemPedidoMap().Configure);
         }
 
     }

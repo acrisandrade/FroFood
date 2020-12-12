@@ -19,6 +19,7 @@ namespace FroFoodDados.MapeamentoDeModelos
             builder.Property(p => p.Observacao).HasMaxLength(200);
             builder.Property(p => p.Status).IsRequired();
             builder.Property(p => p.Pagamento).HasConversion(converter);
+            builder.HasMany(p => p.Itens);
         }
     }
 }
