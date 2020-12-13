@@ -11,6 +11,7 @@ namespace FroFoodCrossCut.InjecaoDependencias
             serviceCollection.AddTransient<IAvaliacaoService, AvaliacaoService>();
             serviceCollection.AddTransient<IClienteService, ClienteService>();
             serviceCollection.AddTransient<IEnderecoService, EnderecoService>();
+            serviceCollection.AddTransient<IItemService, ItemService>();
             serviceCollection.AddTransient<IPedidoService, PedidoService>();
             serviceCollection.AddTransient<IRestauranteService, RestauranteService>();
             

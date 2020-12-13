@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.Interfaces.Servico;
 
@@ -13,18 +11,18 @@ namespace FroFoodCliente.Controllers
     [ApiController]
     public class EnderecosController : ControllerBase
     {
-        private readonly IEnderecoService _context;
+        private readonly IEnderecoService _service;
 
-        public EnderecosController(IEnderecoService context)
+        public EnderecosController(IEnderecoService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: api/Enderecos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Endereco>>> GetEndereco()
         {
-            var resultado = await _context.BuscarAsync();
+            var resultado = await _service.BuscarAsync();
             return Ok(resultado);
         }
 
@@ -32,7 +30,7 @@ namespace FroFoodCliente.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Endereco>> GetEndereco(Guid id)
         {
-            var endereco = await _context.BuscarAsync(id);
+            var endereco = await _service.BuscarAsync(id);
 
             if (endereco == null)
             {
@@ -48,7 +46,8 @@ namespace FroFoodCliente.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Endereco>> PutEndereco(Endereco endereco)
         {
-            var resultado = await _context.EditarAsync(endereco);
+            var resultado = await _service.EditarAsync(endereco);
+
             if (resultado != null)
             {
                 return resultado;
@@ -63,17 +62,23 @@ namespace FroFoodCliente.Controllers
         [HttpPost]
         public async Task<ActionResult<Endereco>> PostEndereco(Endereco endereco)
         {
-            var resultado = await _context.AdicionarAsync(endereco);
+            var resultado = await _service.AdicionarAsync(endereco);
 
-            return CreatedAtAction("GetEndereco", new { id = endereco.Id });
+            return CreatedAtAction("GetEndereco", new { id = resultado.Id });
         }
 
         // DELETE: api/Enderecos/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteEndereco(Guid id)
         {
-            var endereco = await _context.ExcluirAsync(id);
-            return endereco;
+            var resultado = await _service.ExcluirAsync(id);
+
+            if (resultado == false)
+            {
+                return NotFound();
+            }
+
+            return resultado;
         }
 
     }

@@ -13,6 +13,7 @@ namespace FroFoodCrossCut.InjecaoDependencias
             serviceCollection.AddScoped<IAvaliacaoRepositorio, AvaliacaoRepositorio>();
             serviceCollection.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             serviceCollection.AddScoped<IEnderecoRepositorio, EnderecoRepositorio>();
+            serviceCollection.AddScoped<IItemRepositorio, ItemRepositorio>();
             serviceCollection.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
             serviceCollection.AddScoped<IRestauranteRepositorio, RestauranteRepositorio>();
 

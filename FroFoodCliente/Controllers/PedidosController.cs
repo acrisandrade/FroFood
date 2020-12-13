@@ -15,25 +15,26 @@ namespace FroFoodCliente.Controllers
     [ApiController]
     public class PedidosController : ControllerBase
     {
-        private readonly IPedidoService _context;
+        private readonly IPedidoService _service;
 
-        public PedidosController(IPedidoService context)
+        public PedidosController(IPedidoService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: api/Pedidos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pedido>>> GetPedido()
         {
-            return Ok(await _context.BuscarAsync());
+            var resultado = await _service.BuscarAsync();
+            return Ok(resultado);
         }
 
         // GET: api/Pedidos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Pedido>> GetPedido(Guid id)
         {
-            var pedido = await _context.BuscarAsync(id);
+            var pedido = await _service.BuscarAsync(id);
 
             if (pedido == null)
             {
@@ -49,7 +50,14 @@ namespace FroFoodCliente.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Pedido>> PutPedido(Pedido pedido)
         {
-            return await _context.EditarAsync(pedido);
+            var resultado = await _service.EditarAsync(pedido);
+
+            if (resultado != null)
+            {
+                return Ok(resultado);
+            }
+
+            return NoContent();
         }
 
         // POST: api/Pedidos
@@ -59,16 +67,17 @@ namespace FroFoodCliente.Controllers
         public async Task<ActionResult<Pedido>> PostPedido(Pedido pedido)
         {
             
-            var resultado = await _context.AdicionarAsync(pedido);
+            var resultado = await _service.AdicionarAsync(pedido);
 
-            return CreatedAtAction("GetPedido", new { id = pedido.Id }, pedido);
+            return CreatedAtAction("GetPedido", new { id = resultado.Id });
         }
 
         // DELETE: api/Pedidos/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeletePedido(Guid id)
         {
-            var resultado = await _context.ExcluirAsync(id);
+            var resultado = await _service.ExcluirAsync(id);
+
             if (resultado == false)
             {
                 return NotFound();

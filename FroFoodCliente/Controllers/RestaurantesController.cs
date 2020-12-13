@@ -11,25 +11,25 @@ namespace FroFoodCliente.Controllers
     [ApiController]
     public class RestaurantesController : ControllerBase
     {
-        private readonly IRestauranteService _context;
+        private readonly IRestauranteService _service;
 
-        public RestaurantesController(IRestauranteService context)
+        public RestaurantesController(IRestauranteService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: api/Restaurantes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Restaurante>>> GetRestaurante()
         {
-            return Ok(await _context.BuscarAsync());
+            return Ok(await _service.BuscarAsync());
         }
 
         // GET: api/Restaurantes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Restaurante>> GetRestaurante(Guid id)
         {
-            var restaurante = await _context.BuscarAsync(id);
+            var restaurante = await _service.BuscarAsync(id);
 
             if (restaurante == null)
             {
@@ -45,7 +45,7 @@ namespace FroFoodCliente.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Restaurante>> PutRestaurante(Restaurante restaurante)
         {
-            var resultado = await _context.EditarAsync(restaurante);
+            var resultado = await _service.EditarAsync(restaurante);
 
             if (resultado != null)
             {
@@ -61,7 +61,8 @@ namespace FroFoodCliente.Controllers
         [HttpPost]
         public async Task<ActionResult<Restaurante>> PostRestaurante(Restaurante restaurante)
         {
-            var resultado = await _context.AdicionarAsync(restaurante);
+            var resultado = await _service.AdicionarAsync(restaurante);
+
             return CreatedAtAction("GetRestaurante", new { id = resultado.Id });
         }
 
@@ -69,7 +70,13 @@ namespace FroFoodCliente.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteRestaurante(Guid id)
         {
-            var resultado = await _context.ExcluirAsync(id);
+            var resultado = await _service.ExcluirAsync(id);
+
+            if (resultado == false)
+            {
+                return NotFound();
+            }
+
             return resultado;
         }
                 

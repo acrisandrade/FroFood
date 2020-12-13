@@ -1,11 +1,12 @@
-﻿using Dominio_FroFood.Models;
-using FroFoodDados.Repositorios;
+﻿using Dominio_FroFood.Interfaces.Repositorio;
+using Dominio_FroFood.Interfaces.Servico;
+using Dominio_FroFood.Models;
 
 namespace FroFoodService.Services
 {
-    public class ItemService : ServicoBase<Item, ItemRepositorio>
+    public class ItemService : ServicoBase<Item, IItemRepositorio>, IItemService
     {
-        public ItemService(ItemRepositorio repositorio) : base(repositorio)
+        public ItemService(IItemRepositorio repositorio) : base(repositorio)
         {
         }
     }
