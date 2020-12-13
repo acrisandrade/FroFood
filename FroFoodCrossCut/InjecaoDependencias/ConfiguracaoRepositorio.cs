@@ -12,6 +12,7 @@ namespace FroFoodCrossCut.InjecaoDependencias
         {
             serviceCollection.AddScoped<IAvaliacaoRepositorio, AvaliacaoRepositorio>();
             serviceCollection.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
+            serviceCollection.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 
             serviceCollection.AddDbContext<FroFoodContexto>(
                 options => options.UseSqlServer("Server = (localdb)\\mssqllocaldb;Database=FroFoodProject;Trusted_Connection=True;MultipleActiveResultSets=true")
