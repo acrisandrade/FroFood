@@ -19,6 +19,20 @@ namespace FroFoodDados.Repositorios
             _setContext = _contexto.Set<T>();
         }
 
+        public virtual async Task<T> AdicionarAsync(T entity)
+        {
+            try
+            {
+                await _setContext.AddAsync(entity);
+                await _contexto.SaveChangesAsync();
+                return await BuscarAsync(entity.Id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public virtual async Task<IEnumerable<T>> BuscarAsync()
         {
             try

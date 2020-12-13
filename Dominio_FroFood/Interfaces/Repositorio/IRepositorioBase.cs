@@ -7,6 +7,7 @@ namespace Dominio_FroFood.Repositorios
 {
     public interface IRepositorioBase<T> where T : ClasseBase
     {
+        Task<T> AdicionarAsync(T entity);
         Task<IEnumerable<T>> BuscarAsync();
         Task<T> BuscarAsync(Guid Id);
         Task<T> EditarAsync(T entity);

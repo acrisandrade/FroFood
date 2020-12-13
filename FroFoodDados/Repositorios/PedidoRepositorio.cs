@@ -4,9 +4,9 @@ using FroFoodDados.ContextoDeDados;
 
 namespace FroFoodDados.Repositorios
 {
-    public class AvaliacaoRepositorio : RepositorioBase<Avaliacao>, IAvaliacaoRepositorio
+    public class PedidoRepositorio : RepositorioBase<Pedido>, IPedidoRepositorio
     {
-        public AvaliacaoRepositorio(FroFoodContexto contexto) : base(contexto)
+        public PedidoRepositorio(FroFoodContexto contexto) : base(contexto)
         {
         }
     }

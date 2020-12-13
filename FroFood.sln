@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FroFoodService", "FroFoodSe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 CrossCut", "4.2 CrossCut", "{33624653-D5BB-4A1F-805F-1BC5A1755EAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FroFoodCrossCut", "FroFoodCrossCut\FroFoodCrossCut.csproj", "{7FAE220F-3D36-40E6-B554-11361446E0AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{58460964-C135-4FEC-9930-CC94552A3A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58460964-C135-4FEC-9930-CC94552A3A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58460964-C135-4FEC-9930-CC94552A3A5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FAE220F-3D36-40E6-B554-11361446E0AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FAE220F-3D36-40E6-B554-11361446E0AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FAE220F-3D36-40E6-B554-11361446E0AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FAE220F-3D36-40E6-B554-11361446E0AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{F9150617-3F22-440B-9D07-37FEA6B2DACE} = {768C194B-BFBE-4026-B495-C3CABAC0DDF8}
 		{58460964-C135-4FEC-9930-CC94552A3A5F} = {B69582E3-464A-4CF7-9FF9-D58F7BF82A08}
 		{33624653-D5BB-4A1F-805F-1BC5A1755EAA} = {CB7ECAAE-8A1B-409A-A6B2-DB017F858740}
+		{7FAE220F-3D36-40E6-B554-11361446E0AB} = {33624653-D5BB-4A1F-805F-1BC5A1755EAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D0DCF0C5-F68D-4FF0-93BE-628ADEF6F5FE}

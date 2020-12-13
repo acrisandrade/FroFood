@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Dominio_FroFood.Servico
 {
-    public interface ServicoDeBusca
+    public interface IServicoDeBusca
     {
         IEnumerable<Restaurante> MaiorAvaliacaoAsync();
     }

@@ -1,11 +1,12 @@
-﻿using Dominio_FroFood.Models;
-using FroFoodDados.Repositorios;
+﻿using Dominio_FroFood.Interfaces.Repositorio;
+using Dominio_FroFood.Interfaces.Servico;
+using Dominio_FroFood.Models;
 
 namespace FroFoodService.Services
 {
-    public class AvaliacaoService : ServicoBase<Avaliacao, AvaliacaoRepositorio>
+    public class AvaliacaoService : ServicoBase<Avaliacao, IAvaliacaoRepositorio>, IAvaliacaoService
     {
-        public AvaliacaoService(AvaliacaoRepositorio repositorio) : base(repositorio)
+        public AvaliacaoService(IAvaliacaoRepositorio repositorio) : base(repositorio)
         {
 
         }
