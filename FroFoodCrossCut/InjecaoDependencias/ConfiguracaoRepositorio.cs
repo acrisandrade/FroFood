@@ -11,8 +11,10 @@ namespace FroFoodCrossCut.InjecaoDependencias
         public static void ConfDependenciesRepository(IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IAvaliacaoRepositorio, AvaliacaoRepositorio>();
-            serviceCollection.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
             serviceCollection.AddScoped<IClienteRepositorio, ClienteRepositorio>();
+            serviceCollection.AddScoped<IEnderecoRepositorio, EnderecoRepositorio>();
+            serviceCollection.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
+            serviceCollection.AddScoped<IRestauranteRepositorio, RestauranteRepositorio>();
 
             serviceCollection.AddDbContext<FroFoodContexto>(
                 options => options.UseSqlServer("Server = (localdb)\\mssqllocaldb;Database=FroFoodProject;Trusted_Connection=True;MultipleActiveResultSets=true")
