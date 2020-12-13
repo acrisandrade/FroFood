@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dominio_FroFood.Models;
-using Dominio_FroFood.Interfaces.Repositorio;
+using Dominio_FroFood.Interfaces.Servico;
 
 namespace FroFoodCliente.Controllers
 {
@@ -11,9 +11,9 @@ namespace FroFoodCliente.Controllers
     [ApiController]
     public class RestaurantesController : ControllerBase
     {
-        private readonly IRestauranteRepositorio _context;
+        private readonly IRestauranteService _context;
 
-        public RestaurantesController(IRestauranteRepositorio context)
+        public RestaurantesController(IRestauranteService context)
         {
             _context = context;
         }
