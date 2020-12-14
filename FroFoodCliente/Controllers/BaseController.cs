@@ -15,7 +15,7 @@ namespace FroFoodCliente.Controllers
                                                    where T : ClasseBase
                                                    where TService : IServicoBase<T>
     {
-        private readonly TService _service;
+        protected readonly TService _service;
 
         public BaseController(TService service)
         {

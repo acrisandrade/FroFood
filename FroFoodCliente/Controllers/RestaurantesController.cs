@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.Interfaces.Servico;
+using System.Text.Json;
+using Dominio_FroFood.ViewModels;
 
 namespace FroFoodCliente.Controllers
 {
@@ -27,16 +29,31 @@ namespace FroFoodCliente.Controllers
 
         // GET: api/Restaurantes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Restaurante>> GetRestaurante(Guid id)
+        public async Task<ActionResult<RestauranteView>> GetRestaurante(Guid id)
         {
-            var restaurante = await _service.BuscarAsync(id);
-
-            if (restaurante == null)
+            var r = await _service.BuscarAsync(id);
+            var viewr = new RestauranteView();
+            if (r == null)
             {
                 return NotFound();
             }
 
-            return restaurante;
+            viewr.Nome = r.Nome;
+            viewr.Descricao = r.Descricao;
+            viewr.Id = r.Id;
+            foreach(var i in r.Cardapio)
+            {
+                viewr.Cardapio.Add(new ItemView()
+                {
+                    Id = i.Id,
+                    Nome = i.Nome,
+                    Descricao = i.Descricao,
+                    Valor = i.Valor,
+                    Tamanho = i.Tamanho,
+                    Categoria = i.Categoria,
+                }); 
+            }
+            return viewr;
         }
 
         // PUT: api/Restaurantes/5

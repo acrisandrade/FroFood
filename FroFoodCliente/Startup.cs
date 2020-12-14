@@ -31,7 +31,7 @@ namespace FroFoodCliente
                     Title = "Projeto de Bloco ASP.NET",
                 });
             });
-
+            services.AddControllers().AddNewtonsoftJson();
             services.AddControllers();
         }
 

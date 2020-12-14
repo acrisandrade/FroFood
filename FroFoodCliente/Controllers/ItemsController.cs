@@ -76,14 +76,14 @@ namespace FroFoodCliente.Controllers
             }
 
             return resultado;
-        }
+        }*/
 
         [HttpPost("/buscaritems/")]
         public IEnumerable<Item> BuscarItems(string busca)
         {
             var resultado = _service.BuscarItems(busca);
             return resultado;
-        }*/
+        }
 
     }
 }
