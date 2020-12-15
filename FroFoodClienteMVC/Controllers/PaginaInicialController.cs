@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
 using FroFoodClienteMVC.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -45,8 +45,8 @@ namespace FroFoodClienteMVC.Controllers
             return View();
         }
 
-       [HttpPost]
-       public async Task<ActionResult> ResultadoBusca([FromForm] string busca)
+       [HttpGet]
+       public async Task<ActionResult> ResultadoBusca(string busca)
         {
             if (!ModelState.IsValid)
             {
@@ -68,12 +68,14 @@ namespace FroFoodClienteMVC.Controllers
             return View(items);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> Pedido(Guid id)
         {
             var pedido = new PedidoView();
             var item = new ItemView();
-            using (var httpClient = new HttpClient()) {
+            using (var httpClient = new HttpClient())
+            {
                 var url = _configuration["UrlAPICliente:UrlBase"] + $"/Items/{id}";
                 using (var resposta = await httpClient.GetAsync(url))
                 {
@@ -83,24 +85,23 @@ namespace FroFoodClienteMVC.Controllers
 
                 var b = _contextAccessor.HttpContext.User.Identity.Name;
                 var user = _context.Users.FirstOrDefault(u => u.UserName == b);
-                if (user.Id != null) {
+                if (_contextAccessor.HttpContext.User.Identity.IsAuthenticated)
+                {
                     pedido.Cliente = Guid.Parse(user.Id);
                 }
+                
                 pedido.Item = item;
                 pedido.Valor = item.Valor;
                 pedido.Restaurante = item.RestauranteId;
+                TempData["pedido"] = JsonConvert.SerializeObject(pedido);
+
                 if (!ValidarUsuarioNaAPI(Guid.Parse(user.Id)).Result)
                 {
-                    return RedirectToAction(nameof(Cadastro));
+                    return RedirectToAction("Index", "Cadastro");
                 }
+                
+                return RedirectToAction("Pedido","Pedidos");
             }
-            return View(pedido);
-        }
-
-        [HttpGet]
-        public IActionResult Cadastro()
-        {
-            return View();
         }
 
         private async Task<bool> ValidarUsuarioNaAPI(Guid id)
@@ -121,5 +122,6 @@ namespace FroFoodClienteMVC.Controllers
             }
             return true;
         }
+               
     }
 }

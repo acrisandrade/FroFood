@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.Interfaces.Repositorio;
+using Dominio_FroFood.ViewModels;
 
 namespace FroFoodCliente.Controllers
 {
@@ -12,10 +13,12 @@ namespace FroFoodCliente.Controllers
     public class AvaliacoesController : ControllerBase
     {
         private readonly IAvaliacaoRepositorio _service;
+        private readonly IPedidoRepositorio _pedido;
 
-        public AvaliacoesController(IAvaliacaoRepositorio service)
+        public AvaliacoesController(IAvaliacaoRepositorio service, IPedidoRepositorio pedido)
         {
             _service = service;
+            _pedido = pedido;
         }
 
         // GET: api/Avaliacoes
@@ -60,9 +63,15 @@ namespace FroFoodCliente.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Avaliacao>> PostAvaliacao(Avaliacao avaliacao)
+        public async Task<ActionResult<Avaliacao>> PostAvaliacao(AvaliacaoView avaliacao)
         {
-            var resultado = await _service.AdicionarAsync(avaliacao);
+            var a = new Avaliacao()
+            {
+                Nota = avaliacao.Nota,
+                Comentario = avaliacao.Comentario,
+                Pedido = await _pedido.BuscarAsync(avaliacao.Pedido.Id),
+            };
+            var resultado = await _service.AdicionarAsync(a);
 
             return CreatedAtAction("GetAvaliacao", new { id = resultado.Id });
         }

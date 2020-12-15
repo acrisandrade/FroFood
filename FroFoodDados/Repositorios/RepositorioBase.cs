@@ -23,6 +23,7 @@ namespace FroFoodDados.Repositorios
         {
             try
             {
+                entity.DataCriacao = DateTime.Now;
                 await _setContext.AddAsync(entity);
                 await _contexto.SaveChangesAsync();
                 return await BuscarAsync(entity.Id);

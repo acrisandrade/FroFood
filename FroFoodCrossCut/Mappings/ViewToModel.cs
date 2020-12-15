@@ -30,7 +30,11 @@ namespace FroFoodCrossCut.Mappings
             pView.Cliente = pedido.Cliente.Id;
             pView.Status = pedido.Status;
             pView.Pagamento = pedido.Pagamento;
-
+            foreach(var i in pedido.Itens)
+            {
+                pView.Item = ItemToItemView(new ItemView(), i.Item);
+            }
+            
             return pView;
         }
     }

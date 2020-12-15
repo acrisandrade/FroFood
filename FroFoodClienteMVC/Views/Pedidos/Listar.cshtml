@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Dominio_FroFood.ViewModels.PedidoView>
+
+@{
+    ViewData["Title"] = "Listar";
+}
+
+<h2>Histórico de Pedidos</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Pedido
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Pagamento)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        
+            <tr>
+                <td>
+                    <a class=" "asp-action="Index" asp-controller="Avaliacao" asp-route-id="@item.Id">@(item.Item.Nome)</a>
+</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pagamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                </td>
+            </tr>
+        
+            }
+        
+    </tbody>
+</table>

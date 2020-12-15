@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -13,6 +14,9 @@ namespace FroFoodClienteMVC.Controllers
 {
     public class RestauranteController : Controller
     {
+
+        
+
         [HttpGet]
         public async Task<IActionResult> Index(Guid id)
         {

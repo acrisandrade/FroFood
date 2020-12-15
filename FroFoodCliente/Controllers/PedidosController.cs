@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Dominio_FroFood.Models;
 using FroFoodDados.ContextoDeDados;
 using Dominio_FroFood.Interfaces.Servico;
+using Dominio_FroFood.ViewModels;
+using FroFoodCrossCut.Mappings;
 
 namespace FroFoodCliente.Controllers
 {
@@ -16,13 +18,18 @@ namespace FroFoodCliente.Controllers
     public class PedidosController : ControllerBase
     {
         private readonly IPedidoService _service;
+        private readonly IRestauranteService _res;
+        private readonly IItemService _item;
+        private readonly IClienteService _cli;
 
-        public PedidosController(IPedidoService service)
+        public PedidosController(IPedidoService service, IRestauranteService res, IItemService item, IClienteService cli)
         {
             _service = service;
+            _res = res;
+            _item = item;
+            _cli = cli;
         }
 
-        // GET: api/Pedidos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pedido>>> GetPedido()
         {
@@ -30,9 +37,20 @@ namespace FroFoodCliente.Controllers
             return Ok(resultado);
         }
 
-        // GET: api/Pedidos/5
+        [HttpGet("listar/{id}")]
+        public async Task<ActionResult<IEnumerable<PedidoView>>> GetPedidoBuUser(Guid id)
+        {
+            var resultado = await _service.buscarPorUsuario(id);
+            var pview = new List<PedidoView>();
+            foreach(var p in resultado)
+            {
+                pview.Add(ViewToModel.PedidoToPedidoView(new PedidoView(), p));
+            }
+            return Ok(pview);
+        }
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pedido>> GetPedido(Guid id)
+        public async Task<ActionResult<PedidoView>> GetPedido(Guid id)
         {
             var pedido = await _service.BuscarAsync(id);
 
@@ -41,12 +59,9 @@ namespace FroFoodCliente.Controllers
                 return NotFound();
             }
 
-            return pedido;
+            return ViewToModel.PedidoToPedidoView(new PedidoView(), pedido);
         }
 
-        // PUT: api/Pedidos/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<ActionResult<Pedido>> PutPedido(Pedido pedido)
         {
@@ -60,19 +75,38 @@ namespace FroFoodCliente.Controllers
             return NoContent();
         }
 
-        // POST: api/Pedidos
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Pedido>> PostPedido(Pedido pedido)
+        public async Task<ActionResult<PedidoView>> PostPedido(PedidoView pedido)
         {
-            
-            var resultado = await _service.AdicionarAsync(pedido);
+            var p = new Pedido()
+            {
+                Restaurante = await _res.BuscarAsync(pedido.Restaurante),
+                Cliente = await _cli.BuscarAsync(pedido.Cliente),
+                Status = "Pendente",
+                Observacao = pedido.Observacao,
+                Valor = pedido.Valor,
+                Pagamento = pedido.Pagamento,
+            };
+
+            var l = new List<ItemPedido>();
+            var ip = new ItemPedido
+            {
+                ItemId = pedido.Item.Id
+            };
+            l.Add(ip);
+
+            try
+            {
+                p.Itens = l;
+            } catch (Exception e)
+            {
+                throw e;
+            }
+            var resultado = await _service.AdicionarAsync(p);
 
             return CreatedAtAction("GetPedido", new { id = resultado.Id });
         }
 
-        // DELETE: api/Pedidos/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeletePedido(Guid id)
         {

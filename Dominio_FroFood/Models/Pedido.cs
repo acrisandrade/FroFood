@@ -12,5 +12,10 @@ namespace Dominio_FroFood.Models
         public Cliente Cliente { get; set; }
         public FormaPagamento Pagamento { get; set; }
         public string Status { get; set; }
+
+        public Pedido()
+        {
+            Itens = new List<ItemPedido>();
+        }
     }
 }

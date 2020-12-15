@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.Interfaces.Servico;
+using Dominio_FroFood.ViewModels;
 
 namespace FroFoodCliente.Controllers
 {

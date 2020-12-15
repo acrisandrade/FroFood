@@ -12,7 +12,7 @@ namespace FroFoodDados.MapeamentoDeModelos
             builder.HasKey(e => e.Id);
             builder.Property(c => c.Email).IsRequired();
             builder.Property(c => c.Nome).IsRequired();
-            builder.Property(c => c.Telefone).HasMaxLength(9).IsRequired();
+            builder.Property(c => c.Telefone).HasMaxLength(15).IsRequired();
             builder.HasMany(c => c.HistoricoPedidos);
         }
     }
