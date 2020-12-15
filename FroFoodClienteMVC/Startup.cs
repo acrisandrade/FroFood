@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using FroFoodClienteMVC.Data;
 using Microsoft.Extensions.Configuration;
@@ -33,9 +27,17 @@ namespace FroFoodClienteMVC
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddControllers().AddNewtonsoftJson();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSession();
+            services.AddDistributedMemoryCache();
+            /*services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "OpenIdConnect";
+            })
+                .AddCookie()
+                .AddOpe();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +56,8 @@ namespace FroFoodClienteMVC
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

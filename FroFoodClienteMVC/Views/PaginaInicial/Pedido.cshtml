@@ -1,0 +1,47 @@
+﻿@model Dominio_FroFood.ViewModels.PedidoView
+
+@{
+    ViewData["Title"] = "Pedido";
+}
+
+<div class="container">
+    <h4>Pedido</h4>
+    <hr />
+    <label class="form-label">Forma de Pagamento: </label>
+    <select class="form-select" aria-label="Default select example">
+        @foreach (var e in Enum.GetValues(typeof(Dominio_FroFood.Models.FormaPagamento)).Cast<Dominio_FroFood.Models.FormaPagamento>())
+        {
+            <option value="@e">@e</option>
+        }
+    </select>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Observação</label>
+        <textarea class="form-control" name="Observacao" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Confirmar Pedido", "ConfirmarPedido")
+    <br/>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-around">
+        <div class="card col-md-4 col-sm-1 m-1 card-personal">
+            <img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Item.Nome</h5>
+                <p class="card-text">@Model.Item.Descricao</p>
+                <span class="card-text">R$: @Model.Item.Valor</span>
+            </div>
+        </div>
+    </div>
+</div>

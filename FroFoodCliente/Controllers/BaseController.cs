@@ -32,7 +32,7 @@ namespace FroFoodCliente.Controllers
 
         // GET: api/Avaliacoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<T>> Get(Guid id)
+        public virtual async Task<ActionResult<T>> Get(Guid id)
         {
             var entity = await _service.BuscarAsync(id);
 

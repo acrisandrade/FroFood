@@ -15,8 +15,16 @@ namespace FroFoodDados.Repositorios
 
         public override async Task<Restaurante> BuscarAsync(Guid Id)
         {
-            var r = await _contexto.Restaurante.Include(r => r.Cardapio).SingleAsync(rest => Id == rest.Id);
-            return r;
+            try
+            {
+                var r = await _setContext.Include(r => r.Cardapio).SingleAsync(rest => Id == rest.Id);
+                return r;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
         }
     }
 }

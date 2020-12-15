@@ -6,10 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20201214234103_AddPropsIdentityUser.cs" />
+    <Compile Remove="Data\Migrations\20201214234103_AddPropsIdentityUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201215000507_NewIdentityUser.cs" />
+    <Compile Remove="Data\Migrations\20201215000507_NewIdentityUser.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
       <PrivateAssets>all</PrivateAssets>
@@ -21,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dominio_FroFood\Dominio_FroFood.csproj" />
+    <ProjectReference Include="..\FroFoodCrossCut\FroFoodCrossCut.csproj" />
   </ItemGroup>
 
 </Project>

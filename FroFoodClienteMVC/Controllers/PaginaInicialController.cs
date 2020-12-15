@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
+using FroFoodClienteMVC.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -14,11 +16,14 @@ namespace FroFoodClienteMVC.Controllers
 {
     public class PaginaInicialController : Controller
     {
-
+        private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
-        public PaginaInicialController(IConfiguration configuration)
+        private readonly IHttpContextAccessor _contextAccessor;
+        public PaginaInicialController(IConfiguration configuration, IHttpContextAccessor contextAccessor, ApplicationDbContext context)
         {
             _configuration = configuration;
+            _contextAccessor = contextAccessor;
+            _context = context;
         }
 
         public async Task<IActionResult> Index()
@@ -39,34 +44,82 @@ namespace FroFoodClienteMVC.Controllers
         {
             return View();
         }
-       /* public async Task<IActionResult> ResultadoBusca()
+
+       [HttpPost]
+       public async Task<ActionResult> ResultadoBusca([FromForm] string busca)
         {
-            List<RestauranteView> listaBusca = new List<RestauranteView>();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var items = new List<ItemView>();
+            StringContent content = new StringContent(JsonConvert.SerializeObject(busca), Encoding.UTF8, "application/json");
+
             using (var httpClient = new HttpClient())
             {
-               var url = _configuration["UrlAPICliente:UrlBase"] + "/inicial";
-                using (var resposta = await httpClient.PostAsync(url, ))
+                var url = _configuration["UrlAPICliente:UrlBase"] + "/Items/buscaritems";
+                using (var resposta = await httpClient.PostAsync(url, content))
                 {
                     string respostaApi = await resposta.Content.ReadAsStringAsync();
-                    listaBusca = JsonConvert.DeserializeObject<List<RestauranteView>>(respostaApi);
+                    items = JsonConvert.DeserializeObject<List<ItemView>>(respostaApi);
                 }
             }
-                return View(listaBusca);
-        }*/
+            return View(items);
+        }
 
-        public async Task<IActionResult> InfoRestaurante(Guid id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Pedido(Guid id)
         {
-            List <RestauranteView> restaurante = new List <RestauranteView>();
+            var pedido = new PedidoView();
+            var item = new ItemView();
             using (var httpClient = new HttpClient()) {
-                var url = _configuration["UrlAPICliente:UrlBase"] + "/inicial";
+                var url = _configuration["UrlAPICliente:UrlBase"] + $"/Items/{id}";
                 using (var resposta = await httpClient.GetAsync(url))
                 {
                     string apiResposta = await resposta.Content.ReadAsStringAsync();
-                    restaurante = JsonConvert.DeserializeObject<List<RestauranteView >>(apiResposta);
+                    item = JsonConvert.DeserializeObject<ItemView>(apiResposta);
                 }
 
-                return View(restaurante);
+                var b = _contextAccessor.HttpContext.User.Identity.Name;
+                var user = _context.Users.FirstOrDefault(u => u.UserName == b);
+                if (user.Id != null) {
+                    pedido.Cliente = Guid.Parse(user.Id);
+                }
+                pedido.Item = item;
+                pedido.Valor = item.Valor;
+                pedido.Restaurante = item.RestauranteId;
+                if (!ValidarUsuarioNaAPI(Guid.Parse(user.Id)).Result)
+                {
+                    return RedirectToAction(nameof(Cadastro));
+                }
             }
+            return View(pedido);
+        }
+
+        [HttpGet]
+        public IActionResult Cadastro()
+        {
+            return View();
+        }
+
+        private async Task<bool> ValidarUsuarioNaAPI(Guid id)
+        {
+            var userAPI = new ClienteView();
+            using (var httpClient = new HttpClient())
+            {
+                var url = _configuration["UrlAPICliente:UrlBase"] + $"/Clientes/{id}";
+                using (var resposta = await httpClient.GetAsync(url))
+                {
+                    string apiResposta = await resposta.Content.ReadAsStringAsync();
+                    userAPI = JsonConvert.DeserializeObject<ClienteView>(apiResposta);
+                }
+            }
+            if (userAPI == null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

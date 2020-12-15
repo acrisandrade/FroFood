@@ -9,6 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Dominio_FroFood\Dominio_FroFood.csproj" />
     <ProjectReference Include="..\FroFoodDados\FroFoodDados.csproj" />
   </ItemGroup>

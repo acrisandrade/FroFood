@@ -31,12 +31,6 @@ namespace FroFoodCliente.Controllers
         public async Task<ActionResult<Cliente>> GetCliente(Guid id)
         {
             var cliente = await _service.BuscarAsync(id);
-
-            if (cliente == null)
-            {
-                return NotFound();
-            }
-
             return cliente;
         }
 

@@ -15,7 +15,6 @@ namespace Dominio_FroFood.ViewModels
         public string Nome { get; set; }
         public Decimal Avaliacao { get; set; }
         public string Descricao { get; set; }
-
         public IList<ItemView> Cardapio { get; set; }
 
         //TODO

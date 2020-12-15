@@ -6,17 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.Interfaces.Servico;
+using Dominio_FroFood.ViewModels;
+using FroFoodCrossCut.Mappings;
 
 namespace FroFoodCliente.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsController : BaseController<Item, IItemService>
-    {
-        public ItemsController(IItemService service) : base(service)
-        {
-        }
-        /*
+    public class ItemsController : ControllerBase
+    {        
         private readonly IItemService _service;
 
         public ItemsController(IItemService service)
@@ -30,9 +28,9 @@ namespace FroFoodCliente.Controllers
             var resultado = await _service.BuscarAsync();
             return Ok(resultado);
         }
-
+        
         [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> GetItem(Guid id)
+        public async Task<ActionResult<ItemView>> GetItem(Guid id)
         {
             var item = await _service.BuscarAsync(id);
 
@@ -41,9 +39,9 @@ namespace FroFoodCliente.Controllers
                 return NotFound();
             }
 
-            return item;
+            return ViewToModel.ItemToItemView(new ItemView(), item);
         }
-
+        
         [HttpPut("{id}")]
         public async Task<ActionResult<Item>> PutItem(Item item)
         {
@@ -76,13 +74,18 @@ namespace FroFoodCliente.Controllers
             }
 
             return resultado;
-        }*/
+        }
 
-        [HttpPost("/buscaritems/")]
-        public IEnumerable<Item> BuscarItems(string busca)
+        [HttpPost("buscaritems/")]
+        public IEnumerable<ItemView> BuscarItems([FromBody] string busca)
         {
             var resultado = _service.BuscarItems(busca);
-            return resultado;
+            var itemsview = new List<ItemView>();
+            foreach (var r in resultado)
+            {
+                itemsview.Add(ViewToModel.ItemToItemView(new ItemView(), r));
+            }
+            return itemsview;
         }
 
     }

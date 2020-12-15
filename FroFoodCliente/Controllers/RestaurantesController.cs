@@ -6,6 +6,7 @@ using Dominio_FroFood.Models;
 using Dominio_FroFood.Interfaces.Servico;
 using System.Text.Json;
 using Dominio_FroFood.ViewModels;
+using AutoMapper;
 
 namespace FroFoodCliente.Controllers
 {
@@ -14,34 +15,27 @@ namespace FroFoodCliente.Controllers
     public class RestaurantesController : ControllerBase
     {
         private readonly IRestauranteService _service;
+        
 
         public RestaurantesController(IRestauranteService service)
         {
             _service = service;
         }
 
-        // GET: api/Restaurantes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Restaurante>>> GetRestaurante()
         {
             return Ok(await _service.BuscarAsync());
         }
+        
 
-        // GET: api/Restaurantes/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<RestauranteView>> GetRestaurante(Guid id)
+        private RestauranteView RestauranteToRestauranteView(Restaurante restaurante)
         {
-            var r = await _service.BuscarAsync(id);
             var viewr = new RestauranteView();
-            if (r == null)
-            {
-                return NotFound();
-            }
-
-            viewr.Nome = r.Nome;
-            viewr.Descricao = r.Descricao;
-            viewr.Id = r.Id;
-            foreach(var i in r.Cardapio)
+            viewr.Nome = restaurante.Nome;
+            viewr.Descricao = restaurante.Descricao;
+            viewr.Id = restaurante.Id;
+            foreach (var i in restaurante.Cardapio)
             {
                 viewr.Cardapio.Add(new ItemView()
                 {
@@ -51,14 +45,25 @@ namespace FroFoodCliente.Controllers
                     Valor = i.Valor,
                     Tamanho = i.Tamanho,
                     Categoria = i.Categoria,
-                }); 
+                });
             }
             return viewr;
         }
 
-        // PUT: api/Restaurantes/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpGet("{id}")]
+        public async Task<ActionResult<RestauranteView>> GetRestaurante(Guid id)
+        {
+            
+            var r = await _service.BuscarAsync(id);
+            var viewr = RestauranteToRestauranteView(r);
+            if (r == null)
+            {
+                return NotFound();
+            }
+                    
+            return viewr;
+        }
+
         [HttpPut("{id}")]
         public async Task<ActionResult<Restaurante>> PutRestaurante(Restaurante restaurante)
         {
@@ -72,9 +77,6 @@ namespace FroFoodCliente.Controllers
             return NoContent();
         }
 
-        // POST: api/Restaurantes
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Restaurante>> PostRestaurante(Restaurante restaurante)
         {
@@ -83,7 +85,6 @@ namespace FroFoodCliente.Controllers
             return CreatedAtAction("GetRestaurante", new { id = resultado.Id });
         }
 
-        // DELETE: api/Restaurantes/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteRestaurante(Guid id)
         {
