@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio_FroFood.Models;
+using System;
 
 namespace Dominio_FroFood.ViewModels
 {
@@ -9,5 +10,6 @@ namespace Dominio_FroFood.ViewModels
         public string Email { get; set; }
         public string Senha { get; set; }
         public string Telefone { get; set; }
+        public Endereco Endereco { get; set; }
     }
 }
