@@ -6,11 +6,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dominio_FroFood\Dominio_FroFood.csproj" />
     <ProjectReference Include="..\FroFoodCrossCut\FroFoodCrossCut.csproj" />
+    <ProjectReference Include="..\FroFoodService\FroFoodService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Galeria\" />
   </ItemGroup>
 
 

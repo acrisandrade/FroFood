@@ -16,6 +16,7 @@ namespace FroFoodDados.MapeamentoDeModelos
             builder.Property(i => i.Tamanho).HasDefaultValue(0);
             builder.Property(i => i.Categoria).IsRequired();
             builder.HasOne(i => i.Restaurante);
+            builder.Ignore(i => i.Imagem);
         }
     }
 }

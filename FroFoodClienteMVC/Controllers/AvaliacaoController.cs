@@ -41,6 +41,7 @@ namespace FroFoodClienteMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Avaliar([FromForm] string nota, string comentario, string pedido)
         {
             if (!ModelState.IsValid)
