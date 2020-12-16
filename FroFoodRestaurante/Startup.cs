@@ -31,7 +31,7 @@ namespace FroFoodRestaurante
         {
             ConfiguracaoRepositorio.ConfDependenciesRepository(services);
             ConfiguracaoServicos.ConfDependenciesServices(services);
-            services.AddControllers();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -40,6 +40,7 @@ namespace FroFoodRestaurante
                     Title = "Projeto de Bloco ASP.NET",
                 });
             });
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,12 +50,12 @@ namespace FroFoodRestaurante
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseStaticFiles();
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -62,8 +63,6 @@ namespace FroFoodRestaurante
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Estudo ASP.NET CORE 3.1");
                 c.RoutePrefix = string.Empty;
             });
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

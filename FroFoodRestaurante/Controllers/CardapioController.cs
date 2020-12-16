@@ -52,6 +52,13 @@ namespace FroFoodRestaurante.Controllers
             }
             return Ok();
         }
-        
+
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<Item>> Get(Guid id)
+        {
+            var items = _itemService.BuscarItemsPorUsuario(id);
+            return Ok(items);          
+        }
+
     }
 }

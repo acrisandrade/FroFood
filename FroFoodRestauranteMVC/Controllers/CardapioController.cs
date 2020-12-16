@@ -36,25 +36,26 @@ namespace FroFoodRestauranteMVC.Controllers
             
             return View();
         }
+        
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Item>>> GetAll()
+        {
+            var items = new List<Item>();
+            var email = _contextAccessor.HttpContext.User.Identity.Name;
+            var user = _context.Users.FirstOrDefault(u => u.UserName == email);
 
-        //private async Task SetUser()
-        //{
-        //    var email = _contextAccessor.HttpContext.User.Identity.Name;
-        //    var user = _context.Users.FirstOrDefault(u => u.UserName == email);
-
-        //    var id = Guid.Parse(user.Id);
-
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        var url = _configuration["UrlAPICliente:UrlBase"] + $"/Restaurantes/{id}";
-        //        using (var resposta = await httpClient.GetAsync(url))
-        //        {
-        //            string respostaApi = await resposta.Content.ReadAsStringAsync();
-        //            var r = JsonConvert.DeserializeObject<Restaurante>(respostaApi);
-        //            TempData["r"] = r;
-        //        }
-        //    }
-        //}
+            using (var httpClient = new HttpClient())
+            {
+                var url = _configuration["UrlAPICliente:UrlBase"] + $"/Cardapio/{user.Id}";
+                using (var resposta = await httpClient.GetAsync(url))
+                {
+                    string respostaApi = await resposta.Content.ReadAsStringAsync();
+                    items = JsonConvert.DeserializeObject<List<Item>>(respostaApi);
+                }
+            }
+            return View(items);
+        }
 
         [HttpPost]
         [Authorize]

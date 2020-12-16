@@ -33,5 +33,11 @@ namespace FroFoodDados.Repositorios
             var item = _setContext.Include(i => i.Restaurante).Where(i => i.Nome.ToLower().Contains(busca.ToLower())).ToList();
             return item;
         }
+
+        public IEnumerable<Item> BuscarItemsPorUsuario(Guid id)
+        {
+            var items = _setContext.Include(i => i.Restaurante).Where(i => i.Restaurante.Id == id).ToList();
+            return items;
+        }
     }
 }

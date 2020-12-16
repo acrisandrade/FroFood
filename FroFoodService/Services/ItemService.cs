@@ -1,7 +1,9 @@
 ﻿using Dominio_FroFood.Interfaces.Repositorio;
 using Dominio_FroFood.Interfaces.Servico;
 using Dominio_FroFood.Models;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FroFoodService.Services
 {
@@ -15,6 +17,12 @@ namespace FroFoodService.Services
         {
             var item = _repositorio.BuscarItems(busca);
             return item;
+        }
+
+        public IEnumerable<Item> BuscarItemsPorUsuario(Guid id)
+        {
+            var items = _repositorio.BuscarItemsPorUsuario(id);
+            return items;
         }
     }
 }
