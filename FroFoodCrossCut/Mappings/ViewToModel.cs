@@ -17,8 +17,23 @@ namespace FroFoodCrossCut.Mappings
             iview.Tamanho = item.Tamanho;
             iview.Categoria = item.Categoria;
             iview.RestauranteId = item.Restaurante.Id;
-
+            iview.NomeImagem = item.NomeImagem;
             return iview;
+        }
+
+        public static Item ItemViewToItem(ItemView item)
+        {
+            var i = new Item()
+            {
+                Id = item.Id,
+                Nome = item.Nome,
+                Descricao = item.Descricao,
+                Valor = item.Valor,
+                Tamanho = item.Tamanho,
+                Categoria = item.Categoria,
+                NomeImagem = item.NomeImagem,
+            };
+            return i;
         }
 
         public static PedidoView PedidoToPedidoView(PedidoView pView, Pedido pedido)

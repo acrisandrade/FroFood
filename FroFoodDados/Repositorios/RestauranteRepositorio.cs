@@ -37,7 +37,7 @@ namespace FroFoodDados.Repositorios
                 await _contexto.SaveChangesAsync();
                 r = await base.BuscarAsync(entity.Id);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new Restaurante();
             }

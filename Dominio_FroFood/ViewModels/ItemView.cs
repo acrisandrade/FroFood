@@ -15,6 +15,7 @@ namespace Dominio_FroFood.ViewModels
         public Guid RestauranteId { get; set; }
         public int Tamanho { get; set; }
         public Decimal Valor { get; set; }
-        public string Imagem { get; set; }
+        public string NomeImagem { get; set; }
+        public IFormFile Imagem { get; set; }
     }
 }

@@ -76,7 +76,7 @@ namespace FroFoodRestauranteMVC.Controllers
                 using var resposta = await httpClient.PostAsync(url, content);
             }
             
-            return RedirectToAction("","");
+            return RedirectToAction("Index","Cardapio");
         }
     }
 }

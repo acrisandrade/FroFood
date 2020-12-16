@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio_FroFood.Interfaces.Servico;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
 using FroFoodRestauranteMVC.Data;
@@ -29,14 +30,34 @@ namespace FroFoodRestauranteMVC.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
-        public IActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
+            
             return View();
         }
 
+        //private async Task SetUser()
+        //{
+        //    var email = _contextAccessor.HttpContext.User.Identity.Name;
+        //    var user = _context.Users.FirstOrDefault(u => u.UserName == email);
+
+        //    var id = Guid.Parse(user.Id);
+
+        //    using (var httpClient = new HttpClient())
+        //    {
+        //        var url = _configuration["UrlAPICliente:UrlBase"] + $"/Restaurantes/{id}";
+        //        using (var resposta = await httpClient.GetAsync(url))
+        //        {
+        //            string respostaApi = await resposta.Content.ReadAsStringAsync();
+        //            var r = JsonConvert.DeserializeObject<Restaurante>(respostaApi);
+        //            TempData["r"] = r;
+        //        }
+        //    }
+        //}
+
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdicionarItem([FromForm] string nome, string descricao, string valor, string tamanho, string categoria, IFormFile imagem)
         {
@@ -47,7 +68,10 @@ namespace FroFoodRestauranteMVC.Controllers
                     return BadRequest();
                 }
 
-                var item = new Item()
+                var email = _contextAccessor.HttpContext.User.Identity.Name;
+                var user = _context.Users.FirstOrDefault(u => u.UserName == email);
+
+                var item = new ItemView()
                 {
                     Nome = nome,
                     Descricao = descricao,
@@ -58,7 +82,8 @@ namespace FroFoodRestauranteMVC.Controllers
 
                 var ext = imagem.FileName.Split(".");
                 var name = Guid.NewGuid().ToString() + "." + ext[1];
-
+                var r = (Restaurante)TempData["r"];
+                
                 var content = new MultipartFormDataContent();
                 content.Add(new StringContent(nome), "Nome");
                 content.Add(new StringContent(descricao), "Descricao");
@@ -66,6 +91,7 @@ namespace FroFoodRestauranteMVC.Controllers
                 content.Add(new StringContent(categoria), "Categoria");
                 content.Add(new StringContent(tamanho), "Tamanho");
                 content.Add(new StringContent(name), "NomeImagem");
+                content.Add(new StringContent(user.Id), "RestauranteId");
                 content.Add(new StreamContent(imagem.OpenReadStream()), "Imagem", name);
                 
                 using (var httpClient = new HttpClient())
@@ -78,7 +104,7 @@ namespace FroFoodRestauranteMVC.Controllers
                     }
                 }
 
-            } catch
+            } catch(Exception e)
             {
                 return BadRequest();
             }
