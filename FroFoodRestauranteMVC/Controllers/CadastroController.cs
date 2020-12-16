@@ -3,16 +3,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
-using FroFoodClienteMVC.Data;
-using Microsoft.AspNetCore.Authorization;
+using FroFoodRestauranteMVC.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace FroFoodClienteMVC.Controllers
+namespace FroFoodRestauranteMVC.Controllers
 {
     public class CadastroController : Controller
     {
@@ -26,14 +24,13 @@ namespace FroFoodClienteMVC.Controllers
             _contextAccessor = contextAccessor;
             _context = context;
         }
-        
+
         public ActionResult Index()
         {
             return View();
         }
-        
+
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(IFormCollection collection)
         {
@@ -42,38 +39,27 @@ namespace FroFoodClienteMVC.Controllers
                 return BadRequest();
             }
 
-            var cliente = new ClienteView() 
+            var cliente = new RestauranteView()
             {
                 Nome = collection["Nome"],
-                Telefone = collection["Telefone"],
-            };
-
-            var endereco = new Endereco()
-            {
-                Rua = collection["Rua"],
-                Bairro = collection["Bairro"],
-                Cidade = collection["Cidade"],
-                Estado = collection["Estado"],
-                Numero = collection["Numero"],
             };
 
             var email = _contextAccessor.HttpContext.User.Identity.Name;
             var user = _context.Users.FirstOrDefault(u => u.UserName == email);
-            
+
             cliente.Id = Guid.Parse(user.Id);
             cliente.Email = email;
 
-            cliente.Endereco = endereco;
+            
 
             StringContent content = new StringContent(JsonConvert.SerializeObject(cliente), Encoding.UTF8, "application/json");
             using (var httpClient = new HttpClient())
             {
-                var url = _config["UrlAPICliente:UrlBase"] + $"/Clientes";
+                var url = _config["UrlAPICliente:UrlBase"] + $"/Cadastrao";
                 using var resposta = await httpClient.PostAsync(url, content);
             }
-
-            var e = JsonConvert.DeserializeObject<PedidoView>((string)TempData["pedido"]);
-            return View("~/Views/Pedidos/Pedido.cshtml", e);
+            
+            return View();
         }
     }
 }

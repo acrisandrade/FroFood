@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
 using FroFoodClienteMVC.Data;
 using Microsoft.AspNetCore.Authorization;

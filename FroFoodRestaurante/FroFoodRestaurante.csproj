@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dominio_FroFood\Dominio_FroFood.csproj" />
+    <ProjectReference Include="..\FroFoodCrossCut\FroFoodCrossCut.csproj" />
   </ItemGroup>
 
 

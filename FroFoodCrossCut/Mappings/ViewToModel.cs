@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
+using System.Collections.Generic;
 
 namespace FroFoodCrossCut.Mappings
 {
@@ -36,6 +37,24 @@ namespace FroFoodCrossCut.Mappings
             }
             
             return pView;
+        }
+
+        public static RestauranteView RestauranteToRestauranteView(RestauranteView rView, Restaurante r) 
+        {
+            var itv = new List<ItemView>();
+
+            foreach (var i in r.Cardapio)
+            {
+                itv.Add(ItemToItemView(new ItemView(), i));
+            }
+
+            rView.Id = r.Id;
+            rView.Nome = r.Nome;
+            rView.Email = r.Email;
+            rView.Descricao = r.Descricao;
+            rView.Cardapio = itv;
+
+            return rView;
         }
     }
 }

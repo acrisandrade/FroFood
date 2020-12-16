@@ -10,15 +10,12 @@ namespace Dominio_FroFood.ViewModels
         {
             Cardapio = new List<ItemView>();
         }
-
+        public string Email { get; set; }
         public Guid Id { get; set; }
         public string Nome { get; set; }
         public Decimal Avaliacao { get; set; }
         public string Descricao { get; set; }
         public IList<ItemView> Cardapio { get; set; }
-
-        //TODO
-        //Implementar imagem
 
     }
 }

@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FroFoodCrossCut", "FroFoodC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.2 - FroFoodRestaurante", "0.2 - FroFoodRestaurante", "{C3934549-72AD-4EA7-B585-BE8CA24A91F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FroFoodRestauranteMVC", "FroFoodRestauranteMVC\FroFoodRestauranteMVC.csproj", "{D8BEFB5C-C30C-44C9-A25A-5CB396A3C493}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{7FAE220F-3D36-40E6-B554-11361446E0AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FAE220F-3D36-40E6-B554-11361446E0AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FAE220F-3D36-40E6-B554-11361446E0AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8BEFB5C-C30C-44C9-A25A-5CB396A3C493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8BEFB5C-C30C-44C9-A25A-5CB396A3C493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8BEFB5C-C30C-44C9-A25A-5CB396A3C493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8BEFB5C-C30C-44C9-A25A-5CB396A3C493}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +97,7 @@ Global
 		{33624653-D5BB-4A1F-805F-1BC5A1755EAA} = {CB7ECAAE-8A1B-409A-A6B2-DB017F858740}
 		{7FAE220F-3D36-40E6-B554-11361446E0AB} = {33624653-D5BB-4A1F-805F-1BC5A1755EAA}
 		{C3934549-72AD-4EA7-B585-BE8CA24A91F6} = {7F91FFA1-38A8-42C1-A2E3-43D12C74BC15}
+		{D8BEFB5C-C30C-44C9-A25A-5CB396A3C493} = {C3934549-72AD-4EA7-B585-BE8CA24A91F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D0DCF0C5-F68D-4FF0-93BE-628ADEF6F5FE}
