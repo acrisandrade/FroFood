@@ -39,5 +39,25 @@ namespace FroFoodDados.Repositorios
             var items = _setContext.Include(i => i.Restaurante).Where(i => i.Restaurante.Id == id).ToList();
             return items;
         }
+
+        public override async Task<Item> EditarAsync(Item entity)
+        {
+            try
+            {
+                var resultado = await BuscarAsync(entity.Id);
+                if (resultado == null)
+                {
+                    return null;
+                }
+                resultado.DataAtualizao = DateTime.UtcNow;
+                _contexto.Entry(resultado).CurrentValues.SetValues(entity);
+                await _contexto.SaveChangesAsync();
+                return await BuscarAsync(resultado.Id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

@@ -31,9 +31,8 @@ namespace FroFoodRestauranteMVC.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            
             return View();
         }
         
@@ -112,6 +111,58 @@ namespace FroFoodRestauranteMVC.Controllers
             return View();
         }
 
-        
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<ItemView>> EditarCardapio(Guid id)
+        {
+            var itemView = new ItemView();
+            using (var httpClient = new HttpClient())
+            {
+                var url = _configuration["UrlAPICliente:UrlBase"] + $"/Cardapio/getItem/{id}";
+                using (var resposta = await httpClient.GetAsync(url))
+                {
+                    string respostaApi = await resposta.Content.ReadAsStringAsync();
+                    itemView = JsonConvert.DeserializeObject<ItemView>(respostaApi);
+                }
+                
+            }
+            return View(itemView);
+
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<Item>> EditarCardapio(Item item)
+        {
+
+            var email = _contextAccessor.HttpContext.User.Identity.Name;
+            var user = _context.Users.FirstOrDefault(u => u.UserName == email);
+
+            var extAtual = item.Imagem.FileName.Split(".");
+            var extOld = item.NomeImagem.Split(".");
+            var name = extOld[0] + "." + extAtual[1];
+
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(item.Id.ToString()), "Id");
+            content.Add(new StringContent(item.Nome), "Nome");
+            content.Add(new StringContent(item.Descricao), "Descricao");
+            content.Add(new StringContent(item.Valor.ToString()), "Valor");
+            content.Add(new StringContent(item.Categoria), "Categoria");
+            content.Add(new StringContent(item.Tamanho.ToString()), "Tamanho");
+            content.Add(new StringContent(item.NomeImagem), "NomeImagem");
+            content.Add(new StringContent(user.Id), "RestauranteId");
+            content.Add(new StreamContent(item.Imagem.OpenReadStream()), "Imagem", name);
+
+            using (var httpClient = new HttpClient())
+            {
+                var url = _configuration["UrlAPICliente:UrlBase"] + "/Cardapio";
+                using (var resposta = await httpClient.PutAsync(url, content))
+                {
+                    string respostaApi = await resposta.Content.ReadAsStringAsync();
+                    var itemView = JsonConvert.DeserializeObject<ItemView>(respostaApi);
+                }
+            }
+            return RedirectToAction(nameof(GetAll));
+        }
     }
 }

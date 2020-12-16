@@ -28,8 +28,9 @@ namespace FroFoodRestaurante.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromForm] ItemView item)
+        public async Task<ActionResult<Item>> Post([FromForm] ItemView item)
         {
+            
             try
             {
                 var it = ViewToModel.ItemViewToItem(item);
@@ -37,20 +38,64 @@ namespace FroFoodRestaurante.Controllers
                 var i = await _itemService.AdicionarAsync(it);
 
                 var image = item.Imagem;
-
+                
                 if (image.Length > 0)
                 {
                     using (FileStream fileStream = System.IO.File.Create(_env.WebRootPath + "\\Galeria\\" + image.FileName))
                     {
-                        image.CopyTo(fileStream);
+                        
+                        await image.CopyToAsync(fileStream);
                         fileStream.Flush();
                     }
                 }
+                return Ok(i);
             } catch (Exception)
             {
                 return BadRequest();
             }
-            return Ok();
+            
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Item>> Put([FromForm] ItemView item)
+        { 
+            try
+            {
+                var it = ViewToModel.ItemViewToItem(item);
+                it.Restaurante = await _restaurante.BuscarAsync(item.RestauranteId);
+                
+                FileInfo v = new FileInfo(_env.WebRootPath + "\\Galeria\\" + item.NomeImagem);
+                if (v.Exists)
+                {
+                    v.Delete();
+                }
+                var image = item.Imagem;
+                it.NomeImagem = image.FileName;
+                var i = await _itemService.EditarAsync(it);
+                
+                if (image.Length > 0)
+                {
+                    using (FileStream fileStream = System.IO.File.Create(_env.WebRootPath + "\\Galeria\\" + image.FileName))
+                    {
+
+                        await image.CopyToAsync(fileStream);
+                        fileStream.Flush();
+                    }
+                }
+                
+                return Ok(i);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("getitem/{id}")]
+        public async Task<ActionResult<IEnumerable<Item>>> GetItem(Guid id)
+        {
+            var items = await _itemService.BuscarAsync(id);
+            return Ok(items);
         }
 
         [HttpGet("{id}")]
