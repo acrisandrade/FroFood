@@ -14,7 +14,6 @@ namespace FroFoodDados.MapeamentoDeModelos
             builder.Property(c => c.Nome).IsRequired();
             builder.Property(c => c.Telefone).HasMaxLength(15).IsRequired();
             builder.HasMany(c => c.HistoricoPedidos);
-            builder.HasMany(c => c.Endereco);
         }
     }
 }

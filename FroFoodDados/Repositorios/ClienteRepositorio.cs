@@ -14,6 +14,12 @@ namespace FroFoodDados.Repositorios
 
         }
 
+        public override Task<Cliente> BuscarAsync(Guid Id)
+        {
+            var resultado = _setContext.Include(c => c.Endereco).SingleOrDefaultAsync(t => t.Id == Id);
+            return resultado;
+        }
+
         public override async Task<Cliente> AdicionarAsync(Cliente entity)
         {
             var c = new Cliente();

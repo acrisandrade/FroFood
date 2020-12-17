@@ -1,33 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Dominio_FroFood.Models;
-using FroFoodClienteMVC.Data;
-using Dominio_FroFood.Interfaces.Servico;
-using Dominio_FroFood.Interfaces.Repositorio;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.Http;
+using FroFoodClienteMVC.Data;
+using System.Linq;
+using Dominio_FroFood.ViewModels;
+using System;
+using System.Collections.Generic;
 
 namespace FroFoodClienteMVC.Controllers
 {
     public class EnderecosController : Controller
     {
-        private readonly IConfiguration _configuration;
-        public EnderecosController(IConfiguration configuration)
+        private readonly ApplicationDbContext _context;
+        private IConfiguration _configuration;
+        private readonly IHttpContextAccessor _contextAccessor;
+        public EnderecosController(IConfiguration configuration, ApplicationDbContext context, IHttpContextAccessor contextAccessor)
         {
+            _context = context;
             _configuration = configuration;
+            _contextAccessor = contextAccessor;
         }
-        // GET: Enderecos
-        public async Task<IActionResult> Index()
-        {
-            return View();
-        }
+        //// GET: Enderecos
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Create()
         {
@@ -38,7 +40,15 @@ namespace FroFoodClienteMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Rua,Bairro,Cidade,Estado,Numero,Id,DataCriacao,DataAtualizao")] Endereco endereco)
         {
-            
+            var cliente = new ClienteView();
+            var email = _contextAccessor.HttpContext.User.Identity.Name;
+            var user = _context.Users.FirstOrDefault(u => u.UserName == email);
+
+            cliente.Id = Guid.Parse(user.Id);
+            cliente.Endereco = endereco;
+
+            var c = new Cliente();
+
             if (ModelState.IsValid)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(endereco), Encoding.UTF8, "application/json");
@@ -48,9 +58,15 @@ namespace FroFoodClienteMVC.Controllers
                     using var resposta = await httpClient.PostAsync(url, content);
                     string apiResposta = await resposta.Content.ReadAsStringAsync();
                     endereco = JsonConvert.DeserializeObject<Endereco>(apiResposta);
+
+                    url = _configuration["UrlAPICliente:UrlBase"] + $"/Enderecos";
+                    using var resp = await httpClient.GetAsync(url);
+                    apiResposta = await resp.Content.ReadAsStringAsync();
+                    TempData["enderecos"] = JsonConvert.DeserializeObject<List<Endereco>>(apiResposta);
                 }
             }
-            return View(endereco);
+            
+            return RedirectToAction("Index", "Perfil");
         }
 
         // GET: Enderecos/Edit/5
@@ -72,6 +88,7 @@ namespace FroFoodClienteMVC.Controllers
         // POST: Enderecos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("Rua,Bairro,Cidade,Estado,Numero,Id,DataCriacao,DataAtualizao")] Endereco endereco)
@@ -112,8 +129,7 @@ namespace FroFoodClienteMVC.Controllers
                 return NotFound();
             }
 
-            var endereco = await _context.Endereco
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var endereco = await _context.Endereco.FirstOrDefaultAsync(m => m.Id == id);
             if (endereco == null)
             {
                 return NotFound();

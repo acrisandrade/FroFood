@@ -74,6 +74,9 @@ namespace FroFoodDados.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("EnderecoId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -84,6 +87,8 @@ namespace FroFoodDados.Migrations
                         .HasMaxLength(15);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EnderecoId");
 
                     b.ToTable("Cliente");
                 });
@@ -101,9 +106,6 @@ namespace FroFoodDados.Migrations
                     b.Property<string>("Cidade")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ClienteId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataAtualizao")
                         .HasColumnType("datetime2");
@@ -125,8 +127,6 @@ namespace FroFoodDados.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
 
                     b.ToTable("Endereco");
                 });
@@ -291,11 +291,11 @@ namespace FroFoodDados.Migrations
                         .HasForeignKey("RestauranteId");
                 });
 
-            modelBuilder.Entity("Dominio_FroFood.Models.Endereco", b =>
+            modelBuilder.Entity("Dominio_FroFood.Models.Cliente", b =>
                 {
-                    b.HasOne("Dominio_FroFood.Models.Cliente", null)
-                        .WithMany("Endereco")
-                        .HasForeignKey("ClienteId");
+                    b.HasOne("Dominio_FroFood.Models.Endereco", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId");
                 });
 
             modelBuilder.Entity("Dominio_FroFood.Models.Item", b =>

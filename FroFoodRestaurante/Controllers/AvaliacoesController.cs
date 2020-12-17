@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Dominio_FroFood.Interfaces.Repositorio;
 using Dominio_FroFood.Models;
-using Dominio_FroFood.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FroFoodRestaurante.Controllers

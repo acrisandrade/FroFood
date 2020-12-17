@@ -1,5 +1,6 @@
 ﻿using Dominio_FroFood.Interfaces.Repositorio;
 using Dominio_FroFood.Models;
+using Dominio_FroFood.ViewModels;
 using FroFoodDados.ContextoDeDados;
 using Microsoft.Data.SqlClient;
 using System;
@@ -34,10 +35,15 @@ namespace FroFoodDados.Repositorios
                 connection.Open();
                 var r = sqlCommand.BeginExecuteNonQuery();
             }
+            catch (Exception e)
+            {
+                var b = e;
+            }
             finally
             {
                 connection.Close();
             }
+            
             return entity;
 
         }

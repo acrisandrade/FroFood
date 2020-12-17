@@ -27,6 +27,7 @@ namespace FroFoodClienteMVC.Controllers
             _context = context;
         }
         
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -74,6 +75,24 @@ namespace FroFoodClienteMVC.Controllers
 
             var e = JsonConvert.DeserializeObject<PedidoView>((string)TempData["pedido"]);
             return View("~/Views/Pedidos/Pedido.cshtml", e);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<Cliente>> Editar()
+        {
+            var cliente = new Cliente();
+            var email = _contextAccessor.HttpContext.User.Identity.Name;
+            var user = _context.Users.FirstOrDefault(u => u.UserName == email);
+            using (var httpClient = new HttpClient())
+            {
+                var url = _config["UrlAPICliente:UrlBase"] + $"/Clientes/{user.Id}";
+                using var resposta = await httpClient.GetAsync(url);
+                string apiResposta = await resposta.Content.ReadAsStringAsync();
+                cliente = JsonConvert.DeserializeObject<Cliente>(apiResposta);
+            }
+
+            return View(cliente);
         }
     }
 }
