@@ -19,7 +19,7 @@ namespace FroFoodDados.Repositorios
             var c = new Cliente();
             try
             {
-                entity.Endereco.Id = Guid.NewGuid();
+                //entity.Endereco.Id = Guid.NewGuid();
                 _contexto.Set<Cliente>().Include(e => e.Endereco);
                 await _setContext.AddAsync(entity);
                 await _contexto.SaveChangesAsync();

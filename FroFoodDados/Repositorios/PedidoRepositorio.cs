@@ -28,6 +28,5 @@ namespace FroFoodDados.Repositorios
                                              .Include(p => p.Itens).ThenInclude(p => p.Item).Where(c => c.Cliente.Id == id).ToListAsync();
             return resultado;
         }
-        
     }
 }

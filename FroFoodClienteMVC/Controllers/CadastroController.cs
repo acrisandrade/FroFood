@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
 using FroFoodClienteMVC.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +33,7 @@ namespace FroFoodClienteMVC.Controllers
         }
         
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(IFormCollection collection)
         {

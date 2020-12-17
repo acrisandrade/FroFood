@@ -8,5 +8,9 @@ namespace Dominio_FroFood.Interfaces.Servico
 {
     public interface IEnderecoService : IServicoBase<Endereco>
     {
+        public Endereco Adicionar(Endereco entity);
+        Endereco Autalizar(Endereco entity);
+        bool Excluir(Guid id);
+        IEnumerable<Endereco> ListarEnderecos(Guid userId);
     }
 }

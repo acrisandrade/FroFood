@@ -14,14 +14,17 @@ namespace FroFoodCliente.Controllers
     {
         private readonly IAvaliacaoRepositorio _service;
         private readonly IPedidoRepositorio _pedido;
+        private readonly IClienteRepositorio _cliente;
+        private readonly IRestauranteRepositorio _restaurante;
 
-        public AvaliacoesController(IAvaliacaoRepositorio service, IPedidoRepositorio pedido)
+        public AvaliacoesController(IAvaliacaoRepositorio service, IPedidoRepositorio pedido, IClienteRepositorio cliente, IRestauranteRepositorio restaurante)
         {
             _service = service;
             _pedido = pedido;
+            _cliente = cliente;
+            _restaurante = restaurante;
         }
 
-        // GET: api/Avaliacoes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Avaliacao>>> GetAvaliacao()
         {
@@ -29,7 +32,6 @@ namespace FroFoodCliente.Controllers
             return Ok(resultado);
         }
 
-        // GET: api/Avaliacoes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Avaliacao>> GetAvaliacao(Guid id)
         {
@@ -43,9 +45,6 @@ namespace FroFoodCliente.Controllers
             return avaliacao;
         }
 
-        // PUT: api/Avaliacoes/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<ActionResult<Avaliacao>> PutAvaliacao(Avaliacao avaliacao)
         {
@@ -58,10 +57,7 @@ namespace FroFoodCliente.Controllers
 
             return NoContent();
         }
-
-        // POST: api/Avaliacoes
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        
         [HttpPost]
         public async Task<ActionResult<Avaliacao>> PostAvaliacao(AvaliacaoView avaliacao)
         {
@@ -70,13 +66,14 @@ namespace FroFoodCliente.Controllers
                 Nota = avaliacao.Nota,
                 Comentario = avaliacao.Comentario,
                 Pedido = await _pedido.BuscarAsync(avaliacao.Pedido.Id),
+                Restaurante = await _restaurante.BuscarAsync(avaliacao.RestauranteID),
+                Cliente = await _cliente.BuscarAsync(avaliacao.ClienteID),
             };
             var resultado = await _service.AdicionarAsync(a);
 
             return CreatedAtAction("GetAvaliacao", new { id = resultado.Id });
         }
 
-        // DELETE: api/Avaliacoes/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> DeleteAvaliacao(Guid id)
         {

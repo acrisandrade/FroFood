@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,7 @@ namespace FroFoodClienteMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Avaliar([FromForm] string nota, string comentario, string pedido)
         {
             if (!ModelState.IsValid)
@@ -54,14 +56,21 @@ namespace FroFoodClienteMVC.Controllers
                                 Comentario = comentario,
                             };
 
-            
+            var email = _contextAccessor.HttpContext.User.Identity.Name;
+            var user = _context.Users.FirstOrDefault(u => u.UserName == email);
+
+             
+
+
             using (var httpClient = new HttpClient())
             {
                 var url = _configuration["UrlAPICliente:UrlBase"] + $"/Pedidos/{pedido}";
                 using var resposta = await httpClient.GetAsync(url);
                 string apiResposta = await resposta.Content.ReadAsStringAsync();
                 var p = JsonConvert.DeserializeObject<PedidoView>(apiResposta);
-                
+
+                avaliacao.ClienteID = Guid.Parse(user.Id);
+                avaliacao.RestauranteID = p.Restaurante;
                 avaliacao.Pedido = p;
 
                 StringContent content = new StringContent(JsonConvert.SerializeObject(avaliacao), Encoding.UTF8, "application/json");

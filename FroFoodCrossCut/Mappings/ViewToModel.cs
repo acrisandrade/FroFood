@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Dominio_FroFood.Models;
 using Dominio_FroFood.ViewModels;
+using System.Collections.Generic;
 
 namespace FroFoodCrossCut.Mappings
 {
@@ -16,8 +17,23 @@ namespace FroFoodCrossCut.Mappings
             iview.Tamanho = item.Tamanho;
             iview.Categoria = item.Categoria;
             iview.RestauranteId = item.Restaurante.Id;
-
+            iview.NomeImagem = item.NomeImagem;
             return iview;
+        }
+
+        public static Item ItemViewToItem(ItemView item)
+        {
+            var i = new Item()
+            {
+                Id = item.Id,
+                Nome = item.Nome,
+                Descricao = item.Descricao,
+                Valor = item.Valor,
+                Tamanho = item.Tamanho,
+                Categoria = item.Categoria,
+                NomeImagem = item.NomeImagem,
+            };
+            return i;
         }
 
         public static PedidoView PedidoToPedidoView(PedidoView pView, Pedido pedido)
@@ -36,6 +52,24 @@ namespace FroFoodCrossCut.Mappings
             }
             
             return pView;
+        }
+
+        public static RestauranteView RestauranteToRestauranteView(RestauranteView rView, Restaurante r) 
+        {
+            var itv = new List<ItemView>();
+
+            foreach (var i in r.Cardapio)
+            {
+                itv.Add(ItemToItemView(new ItemView(), i));
+            }
+
+            rView.Id = r.Id;
+            rView.Nome = r.Nome;
+            rView.Email = r.Email;
+            rView.Descricao = r.Descricao;
+            rView.Cardapio = itv;
+
+            return rView;
         }
     }
 }

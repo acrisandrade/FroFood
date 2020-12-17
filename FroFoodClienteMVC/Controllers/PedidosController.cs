@@ -61,6 +61,8 @@ namespace FroFoodClienteMVC.Controllers
                 string apiResposta = await resposta.Content.ReadAsStringAsync();
                 pedido.Item = JsonConvert.DeserializeObject<ItemView>(apiResposta);
             }
+
+
             
             StringContent content = new StringContent(JsonConvert.SerializeObject(pedido), Encoding.UTF8, "application/json");
             using (var httpClient = new HttpClient())
@@ -68,9 +70,10 @@ namespace FroFoodClienteMVC.Controllers
                 var url = _configuration["UrlAPICliente:UrlBase"] + $"/Pedidos";
                 using var resposta = await httpClient.PostAsync(url, content);
                 //string apiResposta = await resposta.Content.ReadAsStringAsync();
-                //item = JsonConvert.DeserializeObject<ClienteView>(apiResposta);
+                //item = JsonConvert.DeserializeObject<PedidoView>(apiResposta);
+                //TempData["pedido"] = JsonConvert.SerializeObject(pedido);
             }
-            return RedirectToAction(nameof(Pedido));
+            return RedirectToAction(nameof(Listar));
         }
 
         [HttpGet]

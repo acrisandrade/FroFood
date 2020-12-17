@@ -31,13 +31,6 @@ namespace FroFoodClienteMVC
             services.AddRazorPages();
             services.AddSession();
             services.AddDistributedMemoryCache();
-            /*services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = "Cookies";
-                options.DefaultChallengeScheme = "OpenIdConnect";
-            })
-                .AddCookie()
-                .AddOpe();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

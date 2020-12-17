@@ -25,6 +25,9 @@ namespace FroFoodDados.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ClienteId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Comentario")
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
@@ -41,9 +44,16 @@ namespace FroFoodDados.Migrations
                     b.Property<Guid?>("PedidoId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("RestauranteId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ClienteId");
+
                     b.HasIndex("PedidoId");
+
+                    b.HasIndex("RestauranteId");
 
                     b.ToTable("Avaliacao");
                 });
@@ -64,9 +74,6 @@ namespace FroFoodDados.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("EnderecoId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -77,8 +84,6 @@ namespace FroFoodDados.Migrations
                         .HasMaxLength(15);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EnderecoId");
 
                     b.ToTable("Cliente");
                 });
@@ -96,6 +101,9 @@ namespace FroFoodDados.Migrations
                     b.Property<string>("Cidade")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ClienteId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataAtualizao")
                         .HasColumnType("datetime2");
@@ -117,6 +125,8 @@ namespace FroFoodDados.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Endereco");
                 });
@@ -143,6 +153,9 @@ namespace FroFoodDados.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeImagem")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("RestauranteId")
@@ -265,16 +278,24 @@ namespace FroFoodDados.Migrations
 
             modelBuilder.Entity("Dominio_FroFood.Models.Avaliacao", b =>
                 {
+                    b.HasOne("Dominio_FroFood.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+
                     b.HasOne("Dominio_FroFood.Models.Pedido", "Pedido")
                         .WithMany()
                         .HasForeignKey("PedidoId");
+
+                    b.HasOne("Dominio_FroFood.Models.Restaurante", "Restaurante")
+                        .WithMany()
+                        .HasForeignKey("RestauranteId");
                 });
 
-            modelBuilder.Entity("Dominio_FroFood.Models.Cliente", b =>
+            modelBuilder.Entity("Dominio_FroFood.Models.Endereco", b =>
                 {
-                    b.HasOne("Dominio_FroFood.Models.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("EnderecoId");
+                    b.HasOne("Dominio_FroFood.Models.Cliente", null)
+                        .WithMany("Endereco")
+                        .HasForeignKey("ClienteId");
                 });
 
             modelBuilder.Entity("Dominio_FroFood.Models.Item", b =>
