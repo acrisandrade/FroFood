@@ -69,17 +69,22 @@ namespace FroFoodRestaurante.Controllers
                 {
                     v.Delete();
                 }
-                var image = item.Imagem;
-                it.NomeImagem = image.FileName;
                 var i = await _itemService.EditarAsync(it);
-                
-                if (image.Length > 0)
-                {
-                    using (FileStream fileStream = System.IO.File.Create(_env.WebRootPath + "\\Galeria\\" + image.FileName))
-                    {
 
-                        await image.CopyToAsync(fileStream);
-                        fileStream.Flush();
+                if (item.Imagem != null) {
+                    var image = item.Imagem;
+                    it.NomeImagem = image.FileName;
+                   
+
+
+                    if (image.Length > 0)
+                    {
+                        using (FileStream fileStream = System.IO.File.Create(_env.WebRootPath + "\\Galeria\\" + image.FileName))
+                        {
+
+                            await image.CopyToAsync(fileStream);
+                            fileStream.Flush();
+                        }
                     }
                 }
                 

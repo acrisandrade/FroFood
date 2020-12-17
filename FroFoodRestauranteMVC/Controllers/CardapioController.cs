@@ -126,6 +126,7 @@ namespace FroFoodRestauranteMVC.Controllers
                 }
                 
             }
+            TempData["imagem"] = itemView.NomeImagem;
             return View(itemView);
 
         }
@@ -137,10 +138,13 @@ namespace FroFoodRestauranteMVC.Controllers
 
             var email = _contextAccessor.HttpContext.User.Identity.Name;
             var user = _context.Users.FirstOrDefault(u => u.UserName == email);
+            var name = (string) TempData["imagem"];
 
-            var extAtual = item.Imagem.FileName.Split(".");
-            var extOld = item.NomeImagem.Split(".");
-            var name = extOld[0] + "." + extAtual[1];
+            if (item.Imagem != null) {
+                var extAtual = item.Imagem.FileName.Split(".");
+                var extOld = item.NomeImagem.Split(".");
+                name = extOld[0] + "." + extAtual[1];
+            }
 
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(item.Id.ToString()), "Id");
@@ -151,7 +155,9 @@ namespace FroFoodRestauranteMVC.Controllers
             content.Add(new StringContent(item.Tamanho.ToString()), "Tamanho");
             content.Add(new StringContent(item.NomeImagem), "NomeImagem");
             content.Add(new StringContent(user.Id), "RestauranteId");
-            content.Add(new StreamContent(item.Imagem.OpenReadStream()), "Imagem", name);
+            if (item.Imagem != null) {
+                content.Add(new StreamContent(item.Imagem.OpenReadStream()), "Imagem", name);
+            }
 
             using (var httpClient = new HttpClient())
             {
