@@ -60,9 +60,9 @@ namespace FroFoodCliente.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Endereco>> PostEndereco(Endereco endereco)
+        public ActionResult<Endereco> PostEndereco(Endereco endereco)
         {
-            var resultado = await _service.AdicionarAsync(endereco);
+            var resultado = _service.Adicionar(endereco);
 
             return CreatedAtAction("GetEndereco", new { id = resultado.Id });
         }

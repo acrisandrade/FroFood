@@ -164,5 +164,47 @@ namespace FroFoodRestauranteMVC.Controllers
             }
             return RedirectToAction(nameof(GetAll));
         }
+
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<ActionResult> Delete(Guid id) {
+            using (var httpClient = new HttpClient())
+            {
+                var url = _configuration["UrlAPICliente:UrlBase"] + $"/Cardapio/getitem/{id}";
+                using (var resposta = await httpClient.GetAsync(url))
+                {
+                    string respostaApi = await resposta.Content.ReadAsStringAsync();
+                    var r = JsonConvert.DeserializeObject<Item>(respostaApi);
+                    if (r != null)
+                    {
+                        return View(r);
+                    }
+                }
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<ActionResult> Deletar(Item item)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var url = _configuration["UrlAPICliente:UrlBase"] + $"/Cardapio/{item.Id}";
+                    using (var resposta = await httpClient.DeleteAsync(url))
+                    {
+                        string respostaApi = await resposta.Content.ReadAsStringAsync();
+                        return RedirectToAction(nameof(GetAll));
+                    }
+                }
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }

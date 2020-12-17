@@ -9,5 +9,10 @@ namespace FroFoodService.Services
         public EnderecoService(IEnderecoRepositorio repositorio) : base(repositorio)
         {
         }
+
+        public Endereco Adicionar(Endereco entity)
+        {
+            return _repositorio.Adicionar(entity);
+        }
     }
 }

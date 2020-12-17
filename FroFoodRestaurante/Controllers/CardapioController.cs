@@ -105,5 +105,15 @@ namespace FroFoodRestaurante.Controllers
             return Ok(items);          
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var r =await  _itemService.ExcluirAsync(id);
+            if (r)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
     }
 }

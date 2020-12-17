@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Dominio_FroFood.Models.Avaliacao>
+
+@{
+    ViewData["Title"] = "Avalicaoes";
+}
+
+<h1>Avalicaoes</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Pedido
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCriacao)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @(item.Pedido.Itens.ToList()[0].Item.Nome)
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCriacao)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

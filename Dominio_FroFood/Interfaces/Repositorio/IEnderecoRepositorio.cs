@@ -5,5 +5,6 @@ namespace Dominio_FroFood.Interfaces.Repositorio
 {
     public interface IEnderecoRepositorio : IRepositorioBase<Endereco>
     {
+        public Endereco Adicionar(Endereco entity);
     }
 }

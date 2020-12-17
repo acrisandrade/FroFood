@@ -4,6 +4,7 @@ using System.Text;
 using FroFoodClienteMVC.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Dominio_FroFood.Models;
 
 namespace FroFoodClienteMVC.Data
 {
@@ -13,5 +14,6 @@ namespace FroFoodClienteMVC.Data
             : base(options)
         {
         }
+        public DbSet<Dominio_FroFood.Models.Endereco> Endereco { get; set; }
     }
 }
