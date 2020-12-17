@@ -108,7 +108,7 @@ namespace FroFoodRestauranteMVC.Controllers
             {
                 return BadRequest();
             }
-            return View();
+            return RedirectToAction(nameof(GetAll));
         }
 
         [HttpGet]

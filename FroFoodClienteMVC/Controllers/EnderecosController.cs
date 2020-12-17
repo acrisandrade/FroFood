@@ -29,24 +29,6 @@ namespace FroFoodClienteMVC.Controllers
             return View();
         }
 
-        // GET: Enderecos/Details/5
-        //public async Task<IActionResult> Details(Guid id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var endereco = await _context.BuscarAsync(id);
-        //    if (endereco == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(endereco);
-        //}
-
-        // GET: Enderecos/Create
         public IActionResult Create()
         {
             return View();
@@ -56,6 +38,7 @@ namespace FroFoodClienteMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Rua,Bairro,Cidade,Estado,Numero,Id,DataCriacao,DataAtualizao")] Endereco endereco)
         {
+            
             if (ModelState.IsValid)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(endereco), Encoding.UTF8, "application/json");

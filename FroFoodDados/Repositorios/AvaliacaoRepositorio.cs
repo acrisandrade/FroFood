@@ -35,7 +35,9 @@ namespace FroFoodDados.Repositorios
                 var reultado = await _setContext.Include(a => a.Cliente)
                                                 .Include(a => a.Pedido)
                                                 .ThenInclude(p => p.Itens)
+                                                .ThenInclude(a => a.Item)
                                                 .Include(a => a.Cliente)
+                                                .Include(a => a.Restaurante)
                                                 .Where(c => c.Restaurante.Id == id).ToListAsync();
                 return reultado;
             }
